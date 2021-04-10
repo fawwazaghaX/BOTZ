@@ -75,7 +75,7 @@ async function starts() {
             nay = nay.messages.all()[0]
 			if (!nay.message) return
 			if (nay.key && nay.key.remoteJid == 'status@broadcast') return
-			if (!nay.key.fromMe) return
+			if (nay.key.fromMe) return
 			global.prefix
 			global.blocked
 			const content = JSON.stringify(nay.message)
