@@ -52,7 +52,7 @@ async function starts() {
 		console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code above'))
 	})
 
-	fs.existsSync('./bot.json') && nayla.loadAuthInfo('./bot.json')
+	fs.existsSync('./self-bot.json') && nayla.loadAuthInfo('./self-bot.json')
 	nayla.on('connecting', () => {
 		start('2', 'Connecting...')
 	})
@@ -60,7 +60,7 @@ async function starts() {
 		success('2', 'Connected')
 	})
 	await nayla.connect({timeoutMs: 30*1000})
-        fs.writeFileSync('./bot.json', JSON.stringify(nayla.base64EncodedAuthInfo(), null, '\t'))
+        fs.writeFileSync('./self-bot.json', JSON.stringify(nayla.base64EncodedAuthInfo(), null, '\t'))
 
 	nayla.on('CB:Blocklist', json => {
             if (blocked.length > 2) return
@@ -164,26 +164,17 @@ runtime = process.uptime()
 ║│➻ *${prefix}hilih*
 ║│➻ *${prefix}jumlah*
 ║│➻ *${prefix}hurufkebalik*
-║╰──────────────────
-╠════[ *SPAM•MENU* ]══════
-║╭──────────────────
 ║│➻ *${prefix}spamcall*
 ║│➻ *${prefix}spamemail*
-║╰───────────────────
-╠════[ *FUN•MENU* ]══════
-║╭───────────────────
 ║│➻ *${prefix}fakta*
 ║│➻ *${prefix}gcard*
 ║│➻ *${prefix}quotes*
 ║│➻ *${prefix}tebakgambar*
 ║╰───────────────────
-╠════[ *ANIME•MENU* ]═════
+╠════[ *INFO•MENU* ]═════
 ║╭───────────────────
 ║│➻ *${prefix}neko*
 ║│➻ *${prefix}quotesnime*
-║╰───────────────────
-╠════[ *INFO•MENU* ]══════
-║╭───────────────────
 ║│➻ *${prefix}kbbilazimedia*
 ║│➻ *${prefix}covid*
 ║│➻ *${prefix}wikiid*
@@ -319,6 +310,31 @@ runtime = process.uptime()
 ║│➻ *${prefix}tvjadwal*
 ║│➻ *${prefix}fml*
 ║│➻ *${prefix}cinta*
+║╰───────────────────
+╠═══[ *RANDOM3•MENU* ]═══
+║╭───────────────────
+║│➻ *${prefix}stalkig*
+║│➻ *${prefix}quran*
+║│➻ *${prefix}estetikpic*
+║│➻ *${prefix}memeindo*
+║│➻ *${prefix}darkjokes*
+║│➻ *${prefix}nickff*
+║│➻ *${prefix}tahta*
+║│➻ *${prefix}neon2*
+║│➻ *${prefix}wall*
+║│➻ *${prefix}wolf*
+║│➻ *${prefix}tfire*
+║│➻ *${prefix}ytgold*
+║│➻ *${prefix}ytsilver*
+║│➻ *${prefix}t3d*
+║│➻ *${prefix}logoa*
+║│➻ *${prefix}pornhub*
+║│➻ *${prefix}marvel*
+║│➻ *${prefix}leavest*
+║│➻ *${prefix}phcoment*
+║│➻ *${prefix}nulis*
+║│➻ *${prefix}urlshort*
+║│➻ *${prefix}shortener*
 ║╰──────────────────
 ╠═════[ *INFO•BOT* ]═══════
 ║╭──────────────────
@@ -331,7 +347,7 @@ runtime = process.uptime()
 ║╭──────────────────
 ║│➻ *NAYLA CHAN*
 ║│➻ *RYNZ*
-║│➻ *ALL CREATOR BOTZ* 
+║│➻ *ARA•ARA TEAM* 
 ║╰──────────────────
 ╚════════════════════`
 nayla.sendMessage(from, menu1, image, {caption: menuF, quoted: nay})
@@ -1496,7 +1512,212 @@ break
                    anu1 = `➻ *NAMA* : ${anu.your_name}\n`
                    anu1 += `➻ *NINJA* : ${anu.result}\n`
                    reply(anu1)
-                   break                 
+                   break 
+                   
+                   
+                   
+/* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
+/*======================================================[ API?? ZEKS ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
+
+                   
+                                      
+                                                         
+                                                                                               
+                   case 'stalkig':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} jokowi*`)
+                   F = body.slice(9)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://api.zeks.xyz/api/igstalk?username=${F}&apikey=apivinz`)
+                   anu1 = await getBuffer(anu.profile_pic)
+                   anu2 = `➻ *NAMA* : ${anu.username}\n`
+                   anu2 += `➻ *FULLNAME* : ${anu.fullname}\n`
+                   anu2 += `➻ *FOLLOWERS* : ${anu.follower}\n`
+                   anu2 += `➻ *FOLLOWING* : ${anu.following}\n`
+                   anu2 += `➻ *VERIFY* : ${anu.is_verified}\n`
+                   anu2 += `➻ *BISNIS* : ${anu.is_bussiness}\n`
+                   anu2 += `➻ *PRIVATE* : ${anu.is_private}\n`
+                   anu2 += `➻ *BIO* : ${anu.bio}\n`
+                   anu2 += `➻ *SOURCE* : ${anu.source}\n`
+                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+                   break
+                   case 'quran':
+                   anu = await fetchJson(`https://api.zeks.xyz/api/randomquran`)
+                   anu1 = `➻ *ASMA* : ${anu.result.asma}\n`
+                   anu1 += `➻ *ARTI* : ${anu.result.arti}\n`
+                   anu1 += `➻ *AYAT* : ${anu.result.ayat}\n`
+                   anu1 += `➻ *NOMOR* : ${anu.result.nomor}\n`
+                   anu1 += `➻ *RUKUK* : ${anu.result.rukuk}\n`
+                   anu1 += `➻ *TYPE* : ${anu.result.type}\n`
+                   anu1 += `➻ *URUT* : ${anu.result.urut}\n`                                                                            
+                   anu1 += `➻ *KETERANGAN* : ${anu.result.keterangan}\n`
+                   reply(anu1)
+                   break
+                   case 'estetikpic':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://api.zeks.xyz/api/estetikpic?apikey=apivinz`)
+                   anu1 = await getBuffer(anu.result.result)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'memeindo':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://api.zeks.xyz/api/memeindo?apikey=apivinz`)
+                   anu1 = await getBuffer(anu.result)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'darkjokes':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://api.zeks.xyz/api/darkjokes?apikey=apivinz`)
+                   anu1 = await getBuffer(anu.result)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'nickff':
+                   anu = await fetchJson(`https://api.zeks.xyz/api/nickepep?apikey=apivinz`)
+                   anu1 = `➻ *NIHH* : ${anu.result}\n`
+                   anu1 += `➻ *NIHH* : ${anu.result}\n`
+                   anu1 += `➻ *NIHH* : ${anu.result}\n`
+                   anu1 += `➻ *NIHH* : ${anu.result}\n`
+                   reply(anu1)
+                   break
+                   case 'tahta':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(7)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/hartatahta?text=${F}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'neon2':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(7)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/bneon?apikey=apivinz&text=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break                    
+                   case 'wall':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(6)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/breakwall?apikey=apivinz&text=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break   
+                   case 'wolf':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(6)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/wolflogo?apikey=apivinz&text1=rimurubotz&text2=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break 
+                   case 'tfire':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(7)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/tfire?text=${F}&apikey=apivinz`)                   
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break                
+                   case 'ytgold':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(8)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/gplaybutton?text=${F}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'ytsilver':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(10)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/splaybutton?text=${F}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 't3d':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(5)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=apivinz&text=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'logoa':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
+                   var F = body.slice(7)
+				   var F1 = F.split("&")[0];
+				   var F2 = F.split("&")[1]; 
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/logoaveng?text1=${F1}&text2=${F2}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'pornhub':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
+                   var F = body.slice(9)
+				   var F1 = F.split("&")[0];
+				   var F2 = F.split("&")[1]; 
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/phlogo?text1=${F1}&text2=${F2}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'marvel':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
+                   var F = body.slice(8)
+				   var F1 = F.split("&")[0];
+				   var F2 = F.split("&")[1]; 
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/marvellogo?text1=${F1}&text2=${F2}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'leavest':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(9)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/leavest?text=${F}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break                    
+                   case 'phcoment':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
+                   var F = body.slice(10)
+				   var F1 = F.split("&")[0];
+				   var F2 = F.split("&")[1]; 
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/phub?apikey=apivinz&img=https://1.bp.blogspot.com/-x8KhcOBG-yw/XiU4pi1yWVI/AAAAAAAADBA/gK8tsLyc1lQ808A348IKzDCjf6fUBKONwCLcBGAsYHQ/s1600/cara%2Bbuat%2Bfoto%2Bprofil%2Bdi%2Bwhatsapp%2Bmenjadi%2Bunik.jpg&username=${F1}&msg=${F2}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'nulis':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(7)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${F}&apikey=apivinz`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'shortener':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command}https://link*`)
+                   F = body.slice(11)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)                   
+                   anu = await fetchJson(`https://api.zeks.xyz/api/sid-shortener?apikey=apivinz&url=${F}`)
+                   anu1 = `➻ *SHORT* : ${anu.short}\n`
+                   anu1 += `➻ *LONG* : ${anu.long}\n`
+                   anu1 += `➻ *DATE* : ${anu.created_at.date}\n`
+                   anu1 += `➻ *TYPE* : ${anu.created_at.timezone_type}\n`
+                   anu1 += `➻ *ZONA* : ${anu.created_at.timezone}\n`
+                   reply(anu1)
+                   break 
+                   case 'urlshort':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command}https://link*`)
+                   F = body.slice(10)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)                                      
+                   anu = await fetchJson(`https://api.zeks.xyz/api/urlshort-all?apikey=apivinz&url=${F}`)
+                   anu1 = `➻ *SATU* : ${anu.result_1}\n`
+                   anu1 += `➻ *DUA* : ${anu.result_2}\n`
+                   anu1 += `➻ *TIGA* : ${anu.result_3}\n`
+                   reply(anu1)
+                   break
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                                  
+                                                 
+                                                                               
                                                                                                                                                                            
               
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
