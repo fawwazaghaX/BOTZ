@@ -1,4 +1,4 @@
-# CASE BY NAYLA
+# CASE BY NAYLA CHAN
 
 # Installation
 
@@ -9,12 +9,6 @@
 > pkg install nodejs -y
 > pkg install ffmpeg -y
 ```
-
-## Windows
-* [`Download ffmpeg`](https://ffmpeg.org/download.html#build-windows) and set path
-* [`Download wget`](https://eternallybored.org/misc/wget/releases/) and set path
-* [`Download Node JS`](https://nodejs.org/en/download/)
-
 ## Cloning this repo
 ```cmd
 > git clone https://github.com/naylachan/BOTZ
