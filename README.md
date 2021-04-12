@@ -1,25 +1,45 @@
-install bot api free
+# CASE BY NAYLA
 
-pkg install git
+# Installation
 
-pkg install ffmpeg
+## Termux
+```cmd
+> pkg update && pkg upgrade
+> pkg install git -y
+> pkg install nodejs -y
+> pkg install ffmpeg -y
+```
 
-pkg install bash
+## Windows
+* [`Download ffmpeg`](https://ffmpeg.org/download.html#build-windows) and set path
+* [`Download wget`](https://eternallybored.org/misc/wget/releases/) and set path
+* [`Download Node JS`](https://nodejs.org/en/download/)
 
-pkg install npm
+## Cloning this repo
+```cmd
+> git clone https://github.com/naylachan/BOTZ
+> cd BOTZ
+```
 
-pkg update
+## Install the package
+```cmd
+> npm i
+```
 
-pkg upgrade
+## Edit config file
+Edit the required value in `config.json`. You can get the api key at [`LoL Human Rest API`](http://api.lolhuman.xyz/).
+```json
+{
+    "apikey": "FREE",
+    "prefix": "#",
+    "owner": "62812874133914"
+}
+```
 
-git clone https://github.com/naylachan/BOTZ
+## Run the bot
+```cmd
+> npm start
+```
 
-cd BOTZ
-
-bash install.sh
-
-npm start
-
-tinggal scan.. selesai
-tidak paham?? Silahkan hubungi saya
-Https://wa.me/+62812874133914
+## Note:
+* You can request a case in my [`WhatsApp`](http://wa.me/62812874133914).
