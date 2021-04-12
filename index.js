@@ -1,6 +1,17 @@
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
-/*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
+/*=====================================================[ API FRREEEE ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+
+// MAU AMBIL CASE CARI SINI YA???
+// SILAHKAN BRO:)
+// TAPI SETIDAK NYA ADD NAMA GW DI THX TO BOT KLEAN
+// NAYLA CHAN
+// SEKIAN
+
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ API FREEEEE ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+
 const {
     WAConnection,
     MessageType,
@@ -31,46 +42,60 @@ const imagenye = JSON.parse(fs.readFileSync('./src/image.json'))
 const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
 prefix = setting.prefix
 blocked = []
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ ROOM TO FILE ]==============================================================*/                  	                         	 
 
-function kyun(seconds){
-  function pad(s){
-    return (s < 10 ? '0' : '') + s;
-  }
-  var hours = Math.floor(seconds / (60*60));
-  var minutes = Math.floor(seconds % (60*60) / 60);
-  var seconds = Math.floor(seconds % 60);
+const antilink = JSON.parse(fs.readFileSync('./nayla/antilink.json'))
+const event = JSON.parse(fs.readFileSync('./nayla/event.json'))
+const antiwibu = JSON.parse(fs.readFileSync('./nayla/antiwibu.json'))
+const antijawa = JSON.parse(fs.readFileSync('./nayla/antijawa.json'))
+const antigay = JSON.parse(fs.readFileSync('./nayla/antigay.json'))
+const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 
-  //return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
-  return `${pad(hours)}J ${pad(minutes)}M ${pad(seconds)}D`
-}
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*======================================================[ TIME BOTZ ]==============================================================*/                  	                    	 
 
-async function starts() {
-	const nayla = new WAConnection()
-	nayla.logger.level = 'warn'
-	console.log(banner.string)
-	nayla.on('qr', () => {
-		console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code above'))
-	})
+            function kyun(seconds){
+            function pad(s){
+            return (s < 10 ? '0' : '') + s;
+            }
+            var hours = Math.floor(seconds / (60*60));
+            var minutes = Math.floor(seconds % (60*60) / 60);
+            var seconds = Math.floor(seconds % 60);
+            return `${pad(hours)}J ${pad(minutes)}M ${pad(seconds)}D`
+            }
 
-	fs.existsSync('./self-bot.json') && nayla.loadAuthInfo('./self-bot.json')
-	nayla.on('connecting', () => {
-		start('2', 'Connecting...')
-	})
-	nayla.on('open', () => {
-		success('2', 'Connected')
-	})
-	await nayla.connect({timeoutMs: 30*1000})
-        fs.writeFileSync('./self-bot.json', JSON.stringify(nayla.base64EncodedAuthInfo(), null, '\t'))
-
-	nayla.on('CB:Blocklist', json => {
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ CONNECTING  ]==============================================================*/                  	    
+                    	 
+            async function starts() {
+        	const nayla = new WAConnection()
+	        nayla.logger.level = 'warn'
+	        console.log(banner.string)
+        	nayla.on('qr', () => {
+     		console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code above'))
+	        })
+	        fs.existsSync('./self-bot.json') && nayla.loadAuthInfo('./self-bot.json')
+	        nayla.on('connecting', () => {
+		    start('2', 'Connecting...')
+        	})
+	        nayla.on('open', () => {
+	    	success('2', 'Connected')
+         	})
+        	await nayla.connect({timeoutMs: 30*1000})
+            fs.writeFileSync('./self-bot.json', JSON.stringify(nayla.base64EncodedAuthInfo(), null, '\t'))
+	        nayla.on('CB:Blocklist', json => {
             if (blocked.length > 2) return
-	    for (let i of json[1].blocklist) {
+	        for (let i of json[1].blocklist) {
 	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
-	    }
-	})
+	        }
+        	})
 
-	nayla.on('chat-update', async (nay) => {
-		try {
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
+                	 	         
+	        nayla.on('chat-update', async (nay) => {
+      		try {
             if (!nay.hasNewMessage) return
             nay = nay.messages.all()[0]
 			if (!nay.message) return
@@ -84,6 +109,7 @@ async function starts() {
 			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 			body = (type === 'conversation' && nay.message.conversation.startsWith(prefix)) ? nay.message.conversation : (type == 'imageMessage') && nay.message.imageMessage.caption.startsWith(prefix) ? nay.message.imageMessage.caption : (type == 'videoMessage') && nay.message.videoMessage.caption.startsWith(prefix) ? nay.message.videoMessage.caption : (type == 'extendedTextMessage') && nay.message.extendedTextMessage.text.startsWith(prefix) ? nay.message.extendedTextMessage.text : ''
+			var pes = (type === 'conversation' && nay.message.conversation) ? nay.message.conversation : (type == 'imageMessage') && nay.message.imageMessage.caption ? nay.message.imageMessage.caption : (type == 'videoMessage') && nay.message.videoMessage.caption ? nay.message.videoMessage.caption : (type == 'extendedTextMessage') && nay.message.extendedTextMessage.text ? nay.message.extendedTextMessage.text : ''
 			budy = (type === 'conversation') ? nay.message.conversation : (type === 'extendedTextMessage') ? nay.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
@@ -102,6 +128,13 @@ async function starts() {
 			const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
 			const isOwner = ownerNumber.includes(sender)
+			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
+			const isAntiLink = isGroup ? antilink.includes(from) : false
+			const isEventon = isGroup ? event.includes(from) : false
+			const isAntigay = isGroup ? antigay.includes(from) : false
+			const isAntibocil = isGroup ? antibocil.includes(from) : false
+			const isAntiwibu = isGroup ? antiwibu.includes(from) : false
+			const isAntijawa = isGroup ? antijawa.includes(from) : false 
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
@@ -145,8 +178,13 @@ async function starts() {
             + 'FN:OTHER\n'
             + 'ORG:OWNER;\n'
             + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
-            + 'END:VCARD'			
+            + 'END:VCARD'	
+            
 			switch(command) {
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ API FREEEEEE ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+
 				case 'help':
 				case 'menu':
 const menu1 = fs.readFileSync('image/menu.jpg')
@@ -158,6 +196,14 @@ runtime = process.uptime()
 ║│➻ *AUTHOR* : NAYLA CHAN
 ║│➻ *NAMEBOT* : BOTWA
 ║│https://github.com/naylachan
+║╰───────────────────
+╠════[ *ANTI•MENU* ]══════
+║╭───────────────────
+║│➻ *${prefix}antilink*
+║│➻ *${prefix}antigay*
+║│➻ *${prefix}antibocil*
+║│➻ *${prefix}antiwibu*
+║│➻ *${prefix}antijawa*
 ║╰───────────────────
 ╠════[ *MENU•MEDIA* ]══════
 ║╭───────────────────
@@ -417,7 +463,26 @@ runtime = process.uptime()
 ║│➻ *${prefix}nolep*
 ║│➻ *${prefix}hebat*
 ║╰──────────────────
-╠═════[ *INFO•BOT* ]═══════
+╠═════[ *WALL•MENU* ]═══
+║╭──────────────────
+║│➻ *${prefix}wallteknologi*
+║│➻ *${prefix}wallhacker*
+║│➻ *${prefix}wallcyber*
+║│➻ *${prefix}wallmuslim*
+║│➻ *${prefix}wallpegunungan*
+║│➻ *${prefix}caklontong*
+║│➻ *${prefix}robot*
+║│➻ *${prefix}3dwhite*
+║│➻ *${prefix}daun*
+║│➻ *${prefix}metal1*
+║│➻ *${prefix}metal*
+║│➻ *${prefix}scary*
+║│➻ *${prefix}imo*
+║│➻ *${prefix}wallpaper*
+║│➻ *${prefix}quotes2*
+║│➻ *${prefix}quotes1*
+║╰──────────────────
+╠═════[ *INFO•BOT* ]══════
 ║╭──────────────────
 ║│➻ *saya tidak menjamin 100%* 
 ║│➻ *fitur bot ini work/sukses*
@@ -438,7 +503,9 @@ break
 // JGN AMPAS TAMPILAN GW
 // BY NAYLA CHAN		             		             
 
-// JELEK? IYA EMG JELEK :V                                   
+// JELEK? IYA EMG JELEK :V  
+// MAU REQUEST FITUR??? 
+// CHAT GW wa.me/+62812874133914                              
 /* ======================================================[ MEDIA-API ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
@@ -1595,16 +1662,12 @@ break
                    reply(anu1)
                    break 
                    
-                   
-                   
+                                                                                               
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
 /*======================================================[ API?? ZEKS ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
 
-                   
-                                      
-                                                         
-                                                                                               
+                                                                                                                                                                                                                 
                    case 'stalkig':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} jokowi*`)
                    F = body.slice(9)
@@ -1949,39 +2012,163 @@ break
 /*====================================================[ API?? NOT API ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
                   
-                  case 'ganteng':
-			      case 'cantik':
-				  case 'jelek':
-				  case 'goblok':
-				  case 'bego':
-				  case 'pinter':
-			   	  case 'jago':
-				  case 'babi':
-				  case 'beban':
-				  case 'baik':
-				  case 'jahat':
-				  case 'anjing':
-				  case 'monyet':
-				  case 'haram':
-				  case 'kontol':
-				  case 'pakboy':
-				  case 'pakgirl':
-				  case 'sadboy':
-				  case 'sadgirl':
-				  case 'wibu':
-				  case 'nolep':
-				  case 'hebat':
-				  if (!isGroup) return reply(ind.groupo())
-				  jds = []
-				  const A1 = groupMembers
-				  const B1 = groupMembers
-				  const C1 = A1[Math.floor(Math.random() * A1.length)]
-				  D1 = `yang *ter${command}* disini adalah @${C1.jid.split('@')[0]}`                  
-				  jds.push(C1.jid)
-				  mentions(D1, jds, true)
-				  break
+                   case 'ganteng': case 'cantik': case 'jelek': case 'goblok': case 'bego': case 'pinter': case 'jago': case 'nolep': 
+                   case 'babi': case 'beban': case 'baik': case 'jahat': case 'anjing': case 'monyet': case 'haram': 
+                   case 'kontol': case 'pakboy': case 'pakgirl':	case 'sadboy': case 'sadgirl': case 'wibu': case 'hebat':
+				   if (!isGroup) return reply(`GROUP ONLY`)
+ 				   jds = []
+				   const A1 = groupMembers
+  		 		   const B1 = groupMembers
+ 				   const C1 = A1[Math.floor(Math.random() * A1.length)]
+				   D1 = `yang *ter${command}* disini adalah @${C1.jid.split('@')[0]}`                  
+				   jds.push(C1.jid)
+				   mentions(D1, jds, true)
+				   break
                                                                                                
+/* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
+/*====================================================[ API?? NOT API ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
                                                                                                                                                                                                                                                                                                                                                           
+                   case 'wallteknologi': case 'walteknologi':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/wallpaper/teknologi?apikey=alpin1`)
+                   anu1 = JSON.parse(JSON.stringify(anu.result));
+                   anu2=  anu1[Math.floor(Math.random() * anu1.length)];
+                   anu3 = await getBuffer(anu2)
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'wallpegunungan': case 'walpegunungan':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/wallpaper/pegunungan?apikey=alpin1`)
+                   anu1 = JSON.parse(JSON.stringify(anu.result));
+                   anu2=  anu1[Math.floor(Math.random() * anu1.length)];
+                   anu3 = await getBuffer(anu2)
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'wallmuslim': case 'walmuslim':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/wallpaper/muslim?apikey=alpin1`)
+                   anu1 = JSON.parse(JSON.stringify(anu.result));
+                   anu2=  anu1[Math.floor(Math.random() * anu1.length)];
+                   anu3 = await getBuffer(anu2)
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'wallcyber': case 'walcyber':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/wallpaper/cyberspace?apikey=alpin1`)
+                   anu1 = JSON.parse(JSON.stringify(anu.result));
+                   anu2=  anu1[Math.floor(Math.random() * anu1.length)];
+                   anu3 = await getBuffer(anu2)
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'wallhacker': case 'walhacker':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/wallpaper/programming?apikey=alpin1`)
+                   anu1 = JSON.parse(JSON.stringify(anu.result));
+                   anu2=  anu1[Math.floor(Math.random() * anu1.length)];
+                   anu3 = await getBuffer(anu2)
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'quotes1':
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/randomquote/muslim?apikey=alpin1`)
+                   anu1 = `➻ *QUOTES* : ${anu.result.text_id}`
+                   reply(anu1)
+                   break
+                   case 'quotes2':
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/quotes/kanye?apikey=alpin1`)
+                   anu1 = `➻ *QUOTES* : ${anu.result.text_id}`
+                   reply(anu1)
+                   break
+                   case 'wallpaper': case 'walpaper':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/random/wallpaper?apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'imo': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(5)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/lmo?text=${F}&theme=bintang&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'scary': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(7)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/yamaker?text=${F}&theme=scary-njir&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'metal': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(7)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/yamaker?text=${F}&theme=metal-epek&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'metal1': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(8)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/noti?text=${F}&theme=metal-wolf&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'daun': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(6)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/noti?text=${F}&theme=daun-kaki&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case '3dwhite': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(9)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/neon9?text=${F}&theme=3dwhite&apikey=alpin1`)
+                   anu1 = await getBuffer(anu.result.url)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'robot': 
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   F = body.slice(7)			                  
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/maker/special/transformer?text=${F}&apikey=alpin11`)
+                   anu1 = await getBuffer(anu.result.results)
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   break
+                   case 'caklontong':
+                   anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/kuis/caklontong?apikey=alpin1`)                 
+                   anu1 = `➻ *SOAL* : ${anu.result.soal}\nJAWAB CUYY WAKTU 60 DETIK`
+                   anu2 = `➻ *JAWABAN* : ${anu.result.jawaban}\n`
+                   anu2 += `➻ *DESK* : ${anu.result.deskripsi}`
+                   setTimeout( () => {
+                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   }, 1)
+                   setTimeout( () => {
+                   costum('50 DETIK LAGI', text, tescuk, cr)
+                   }, 10000)                                                                                                                                   
+                   setTimeout( () => {
+                   costum('40 DETIK LAGI', text, tescuk, cr)
+                   }, 20000)    
+                   setTimeout( () => {
+                   costum('30 DETIK LAGI', text, tescuk, cr)
+                   }, 30000)    
+                   setTimeout( () => {
+                   costum('20 DETIK LAGI', text, tescuk, cr)
+                   }, 40000)                                       
+                   setTimeout( () => {
+                   costum('10 DETIK LAGI', text, tescuk, cr)
+                   }, 50000)                                                                                                                                                     
+                   setTimeout( () => {
+                   nayla.sendMessage(from, anu2, text,{quoted: nay})                   
+                   }, 60000)                                                                          
+                   break               
+                                                                                                                                                        
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
 /*====================================================[ API?? NOT API ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
@@ -2085,8 +2272,8 @@ break
 				    reply(`SUKSES`)
 				    break
                     case 'linkgc':
-				    if (!isGroup) return reply(ind.groupo()) 
-				    if (!isBotGroupAdmins) return reply(ind.badmin())
+				    if (!isGroup) return reply(`GRUB ONLY`) 
+				    if (!isBotGroupAdmins) return reply(`BOT BUKAN ADMIN`)
 				    linkgc = await nayla.groupInviteCode (from)
 				    yeh = `https://chat.whatsapp.com/${linkgc}\n\nlink Group *${groupName}*`
 				    nayla.sendMessage(from, yeh, text, {quoted: nay})			       
@@ -2107,8 +2294,491 @@ break
 				    case 'd':
 				    nayla.deleteMessage(from, { id: nay.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true }) 
 				    break 
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ CASE ANTIII ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+
+                    
+                    case 'antilink': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					antilink.push(from)
+					fs.writeFileSync('./nayla/antilink.json', JSON.stringify(antilink))
+					reply('*[❗] ACTIVATED ANTILINK*')
+					} else if (Number(args[0]) === 0) {
+					antilink.splice(from, 1)
+					fs.writeFileSync('./nayla/antilink.json', JSON.stringify(antilink))
+					reply('*[❗] DEACTIVATED ANTILINK*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					case 'antigay': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					antigay.push(from)
+					fs.writeFileSync('./nayla/antigay.json', JSON.stringify(antigay))
+					reply('*[❗] ACTIVATED ANTIGAY*')
+					} else if (Number(args[0]) === 0) {
+					antilink.splice(from, 1)
+					fs.writeFileSync('./nayla/antigay.json', JSON.stringify(antigay))
+					reply('*[❗] DEACTIVATED ANTIGAY*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					case 'antibocil': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					antibocil.push(from)
+					fs.writeFileSync('./nayla/antibocil.json', JSON.stringify(antibocil))
+					reply('*[❗] ACTIVATED ANTIGAY*')
+					} else if (Number(args[0]) === 0) {
+					antibocil.splice(from, 1)
+					fs.writeFileSync('./nayla/antibocil.json', JSON.stringify(antibocil))
+					reply('*[❗] DEACTIVATED ANTIGAY*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					case 'antiwibu': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					antiwibu.push(from)
+					fs.writeFileSync('./nayla/antiwibu.json', JSON.stringify(antiwibu))
+					reply('*[❗] ACTIVATED ANTIWIBU*')
+					} else if (Number(args[0]) === 0) {
+					antiwibu.splice(from, 1)
+					fs.writeFileSync('./nayla/antiwibu.json', JSON.stringify(antiwibu))
+					reply('*[❗] DEACTIVATED ANTIWIBU*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					case 'antijawa': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					antijawa.push(from)
+					fs.writeFileSync('./nayla/antiwibu.json', JSON.stringify(antijawa))
+					reply('*[❗] ACTIVATED ANTIJAWA*')
+					} else if (Number(args[0]) === 0) {
+					antijawa.splice(from, 1)
+					fs.writeFileSync('./nayla/antiwibu.json', JSON.stringify(antijawa))
+					reply('*[❗] DEACTIVATED ANTIJAWA*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					 
+					 
+					
+                    
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ ANTI RANDOM ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
                     
                     default:
+                    if (budy.includes("https://")){
+					if (!isGroup) return
+					if (!isAntiLink) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				   
+                    if (budy.includes("syg")){
+					if (!isGroup) return
+					if (!isAntigay) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge gayyyy yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`Gayy Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				     
+				    if (budy.includes("ayan")){
+					if (!isGroup) return
+					if (!isAntigay) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge gayyyy yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`Gayy Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("love ")){
+					if (!isGroup) return
+					if (!isAntigay) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge gayyyy yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`Gayy Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("ayuk")){
+					if (!isGroup) return
+					if (!isAntibocil) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge bocilz yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`bocil Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("chan(")){
+					if (!isGroup) return
+					if (!isAntiwibu) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`wibu Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => { 
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("yamete")){
+					if (!isGroup) return
+					if (!isAntiwibu) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`wibu Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("ambe")){
+					if (!isGroup) return
+					if (!isAntijawa) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`jawa Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("tempek")){
+					if (!isGroup) return
+					if (!isAntijawa) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`jawa Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("matamu")){
+					if (!isGroup) return
+					if (!isAntijawa) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`jawa Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("jancok")){
+					if (!isGroup) return
+					if (!isAntijawa) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`jawa Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }
+				    if (budy.includes("aing")){
+					if (!isGroup) return
+					if (!isAntijawa) return
+					if (isGroupAdmins) return reply('alahhh siaa :v admin grub mahh bebas nge wibu yakan 😎 EZzz')
+					nayla.updatePresence(from, Presence.composing)
+					if (messagesC.includes("@62812874133914")) return reply("izin diterima")
+					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+					reply(`jawa Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+					setTimeout( () => {
+					nayla.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+					}, 5000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("1detik")
+					}, 4000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("2detik")
+					}, 3000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("3detik")
+					}, 2000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("4detik")
+					}, 1000)
+					setTimeout( () => {
+					nayla.updatePresence(from, Presence.composing)
+					reply("5detik")
+					}, 0)
+				    }				    
+				    
+				     
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ API FREEEEE ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 				    
                     if (body.startsWith(`${prefix}${command}`)) {
                     costum('MENGHADEHHHHHHHHHH', text, tescuk, `MAAF COMMAND *${prefix}${command}* TIDAK TERDAFTAR DI DALAM *${prefix}menu*`)             
                      }
