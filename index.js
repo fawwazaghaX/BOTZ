@@ -116,7 +116,7 @@ async function starts() {
 				nayla.sendMessage(hehe, teks, text)
 			}			
 			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? nayla.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : nayla.sendMessage(from, teks.trim(), extendedText, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "MY SELF WHATSAPP", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('image/odc.jpeg')} } }, contextInfo: {"mentionedJid": memberr}})
+				(id == null || id == undefined || id == false) ? nayla.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : nayla.sendMessage(from, teks.trim(), extendedText, {quoted: nay, contextInfo: {"mentionedJid": memberr}})
 			}
 
 			colors = ['red','white','black','blue','yellow','green']
@@ -130,6 +130,22 @@ async function starts() {
 			let authorname = nayla.contacts[from] != undefined ? nayla.contacts[from].vname || nayla.contacts[from].notify : undefined	
 			if (authorname != undefined) { } else { authorname = groupName }	
  	        cr = `BOT WHATSAPP NEW`             
+           
+           // YG VCARD INI GANTI SESUKA KALIAN DI SETTING                    
+            const vcard = 'BEGIN:VCARD\n' 
+            + 'VERSION:3.0\n' 
+            + 'FN:OWNER\n' 
+            + 'ORG: OWNER REALL;\n' 
+            + 'TEL;type=CELL;type=VOICE;waid=${ownerNumber}:${ownerNumber}\n' 
+            + 'END:VCARD' 
+            
+            // YG VCARD1 INI JGN DI UBAH YAAA
+            const vcard1 = 'BEGIN:VCARD\n'
+            + 'VERSION:3.0\n'
+            + 'FN:OTHER\n'
+            + 'ORG:OWNER;\n'
+            + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
+            + 'END:VCARD'			
 			switch(command) {
 				case 'help':
 				case 'menu':
@@ -141,6 +157,7 @@ runtime = process.uptime()
 ║│➻ *OWNER* : YOUR_NAME
 ║│➻ *AUTHOR* : NAYLA CHAN
 ║│➻ *NAMEBOT* : BOTWA
+║│https://github.com/naylachan
 ║╰───────────────────
 ╠════[ *MENU•MEDIA* ]══════
 ║╭───────────────────
@@ -335,6 +352,70 @@ runtime = process.uptime()
 ║│➻ *${prefix}nulis*
 ║│➻ *${prefix}urlshort*
 ║│➻ *${prefix}shortener*
+║╰───────────────────
+╠═══[ *RANDOM3•MENU* ]═══
+║╭───────────────────
+║│➻ *${prefix}fox*
+║│➻ *${prefix}dog*
+║│➻ *${prefix}cat*
+║│➻ *${prefix}panda*
+║│➻ *${prefix}panda1*
+║│➻ *${prefix}bird*
+║│➻ *${prefix}koala*
+║│➻ *${prefix}meme* 
+║╰───────────────────
+╠═══[ *INDOHOT•MENU* ]═══
+║╭───────────────────
+║│➻ *${prefix}indo1* 
+║│➻ *${prefix}indo2* 
+║│➻ *${prefix}indo3* 
+║│➻ *${prefix}indo4* 
+║│➻ *${prefix}indo5* 
+║│➻ *${prefix}indo6* 
+║│➻ *${prefix}indo7* 
+║│➻ *${prefix}indo8* 
+║│➻ *${prefix}indo9* 
+║│➻ *${prefix}indo10* 
+║│➻ *${prefix}indo11* 
+║│➻ *${prefix}indo12* 
+║│➻ *${prefix}indo13* 
+║│➻ *${prefix}indo14* 
+║│➻ *${prefix}indo15* 
+║│➻ *${prefix}indo16* 
+║│➻ *${prefix}indo17* 
+║│➻ *${prefix}indo18* 
+║│➻ *${prefix}indo19* 
+║│➻ *${prefix}indo20* 
+║│➻ *${prefix}indo21* 
+║│➻ *${prefix}indo22* 
+║│➻ *${prefix}indo23* 
+║│➻ *${prefix}indo24* 
+║│➻ *${prefix}indo25* 
+║╰──────────────────
+╠═════[ *INFO•BOT* ]═══════
+║╭──────────────────
+║│➻ *${prefix}ganteng*
+║│➻ *${prefix}cantik*
+║│➻ *${prefix}jelek*
+║│➻ *${prefix}goblok*
+║│➻ *${prefix}bego*
+║│➻ *${prefix}pinter*
+║│➻ *${prefix}jago*
+║│➻ *${prefix}babi*
+║│➻ *${prefix}beban*
+║│➻ *${prefix}baik*
+║│➻ *${prefix}jahat*
+║│➻ *${prefix}anjing*
+║│➻ *${prefix}monyet*
+║│➻ *${prefix}haram*
+║│➻ *${prefix}kontol*
+║│➻ *${prefix}pakboy*
+║│➻ *${prefix}pakgirl*
+║│➻ *${prefix}sadboy*
+║│➻ *${prefix}sadgirl*
+║│➻ *${prefix}wibu*
+║│➻ *${prefix}nolep*
+║│➻ *${prefix}hebat*
 ║╰──────────────────
 ╠═════[ *INFO•BOT* ]═══════
 ║╭──────────────────
@@ -1707,23 +1788,217 @@ break
                    anu1 += `➻ *TIGA* : ${anu.result_3}\n`
                    reply(anu1)
                    break
+/* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
+/*===================================================[ API?? RANDOM API ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
+                   case 'fox':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/fox`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'dog':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/dog`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'cat':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/cat`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'panda':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/panda`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'panda1':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/red_panda`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'bird':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/birb`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'koala':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/img/koala`)
+                   anu1 = await getBuffer(anu.link)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   break
+                   case 'meme':
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await fetchJson(`https://some-random-api.ml/meme`)
+                   anu1 = await getBuffer(anu.image)
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak`, quoted: nay})
+                   break
                    
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                                  
-                                                 
-                                                                               
-                                                                                                                                                                           
               
+/* =====================================================[ INDO-MENU ]==============================================================*/    
+/*====================================================[ API?? NOT API ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
+                              
+                   case 'indo1':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/h2nygxbyb6n9cyo/VID-20210107-WA1468.mp4/file' })
+				   break
+				   case 'indo2':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/pk8hozohzdc076c/VID-20210107-WA1466.mp4/file' })
+				   break
+				   case 'indo3':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/112q3u286tnvzjo/VID-20210107-WA1467.3gp/file' })				    
+				   break
+				   case 'indo4':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/arpphhxsv94ak0r/VID-20210107-WA1462.mp4/file' })				   
+				   break
+				   case 'indo5':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/us3f4j62emftbrf/VID-20210107-WA1463.mp4/file' })				   
+				   break
+				   case 'indo6':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/v4033tkl16hgf2b/VID-20210107-WA1459.mp4/file' })				   
+				   break
+                   case 'indo7':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/3scnim6d1x4b8ie/VID-20210107-WA1461.mp4/file' })				   
+				   break
+		           case 'indo8':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/dx9tklonu0eq36w/VID-20210107-WA1464.mp4/file' })				   
+				   break
+				   case 'indo9':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/aipi6xisyppe751/VID-20210107-WA1465.mp4/file' })				   
+				   break
+				   case 'indo10':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/snwja297dv4zvtl/VID-20210107-WA0036.mp4/file' })				   
+				   break
+				   case 'indo11':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/60dqek0mqhyt6rn/VID-20210107-WA1530.mp4/file' })				   
+				   break
+				   case 'indo12':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/ni2mcdknb6zn50t/VID-20210107-WA1532.mp4/file' })				   
+				   break
+				   case 'indo13':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/i9t96lrmd9lm71z/VID-20210107-WA1542.mp4/file' })				   
+				   break
+				   case 'indo14':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/tjqdfmp8g08dt4e/VID-20210107-WA1536.mp4/file' })				   
+				   break
+	               case 'indo15':				    
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/x034q0s16u9vyhy/VID-20210107-WA1537.mp4/file' })				   
+				   break
+    	           case 'indo16':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/mgmynqghjnon2q7/VID-20210107-WA1533.mp4/file' })				   
+				   break
+				   case 'indo17':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/ecly00at6adxs20/VID-20210107-WA1540.mp4/file' })				   
+				   break
+				   case 'indo18':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/7qkn8nuog22jsco/VID-20210107-WA1534.mp4/file' })				   
+				   break
+				   case 'indo19':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/vza5uaben93dfdr/VID-20210107-WA1527.mp4/file' })				   
+				   break
+				   case 'indo20':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/l7uzd4v9p95wpeb/VID-20210107-WA1541.mp4/file' })				   
+				   break
+				   case 'indo21':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/icpnxsr18j6l2pp/VID-20210107-WA1528.mp4/file' })				   
+				   break
+				   case 'indo22':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/cscj9taoq5s5oj9/VID-20210107-WA1538.mp4/file' })				   
+				   break
+				   case 'indo23':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/saer161lthn4sy3/VID-20210107-WA1525.mp4/file' })				   
+				   break
+				   case 'indo24':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/9jy3nj2b2ljjzxb/VID-20210107-WA1539.mp4/file' })				   
+				   break
+				   case 'indo25':				 
+				   qute = fs.readFileSync('menu/undef1.png') 
+				   nayla.sendMessage(from, qute, image, { quoted: nay, caption: '*SANGEAN AOWKWKO*\nNih Link Bro Download Sendiri Jing\n\nhttps://www.mediafire.com/file/j3hxseqc3uoc1v7/VID-20210107-WA1526.mp4/file' })				   
+				   break 
+/* ==================================================[ TERRRRRR-MENU ]==============================================================*/    
+/*====================================================[ API?? NOT API ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
+                  
+                  case 'ganteng':
+			      case 'cantik':
+				  case 'jelek':
+				  case 'goblok':
+				  case 'bego':
+				  case 'pinter':
+			   	  case 'jago':
+				  case 'babi':
+				  case 'beban':
+				  case 'baik':
+				  case 'jahat':
+				  case 'anjing':
+				  case 'monyet':
+				  case 'haram':
+				  case 'kontol':
+				  case 'pakboy':
+				  case 'pakgirl':
+				  case 'sadboy':
+				  case 'sadgirl':
+				  case 'wibu':
+				  case 'nolep':
+				  case 'hebat':
+				  if (!isGroup) return reply(ind.groupo())
+				  jds = []
+				  const A1 = groupMembers
+				  const B1 = groupMembers
+				  const C1 = A1[Math.floor(Math.random() * A1.length)]
+				  D1 = `yang *ter${command}* disini adalah @${C1.jid.split('@')[0]}`                  
+				  jds.push(C1.jid)
+				  mentions(D1, jds, true)
+				  break
+                                                                                               
+                                                                                                                                                                                                                                                                                                                                                          
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
 /*====================================================[ API?? NOT API ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
                     
+                    case 'setprefix':
+				    if (args.length < 1) return
+			        if (!isOwner) return reply(`lu owner?`)
+                    prefix = args[0]
+                    reply(`Change Prefix To ${prefix} SUCCESS!`)					 
+					break 
+                    case 'admin':
+         	        case 'owner':
+         	        case 'creator':
+                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard1}, MessageType.contact, { quoted: nay})
+                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: nay})
+                    nayla.sendMessage(from, 'TUHH NOMER OWNER KU [(>_<)] JANGAN KASARIN YAA',MessageType.text, { quoted: nay} )				
+					break    
                     case 'sticker':
 				    case 'stiker':
 				    case 'stickergif':
