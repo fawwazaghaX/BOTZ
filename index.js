@@ -42,6 +42,10 @@ const imagenye = JSON.parse(fs.readFileSync('./src/image.json'))
 const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
 prefix = setting.prefix
 blocked = []
+apiKey = setting.apiKey
+cr = setting.cr
+ownername = setting.ownername
+// NOTE MAU UBAH??? SILAHKAN UBAH DI SRC + SETTINGS.JSON
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ ROOM TO FILE ]==============================================================*/                  	                         	 
 
@@ -49,6 +53,7 @@ const antilink = JSON.parse(fs.readFileSync('./nayla/antilink.json'))
 const event = JSON.parse(fs.readFileSync('./nayla/event.json'))
 const antiwibu = JSON.parse(fs.readFileSync('./nayla/antiwibu.json'))
 const antijawa = JSON.parse(fs.readFileSync('./nayla/antijawa.json'))
+const welkom = JSON.parse(fs.readFileSync('./nayla/welkom.json'))
 const antigay = JSON.parse(fs.readFileSync('./nayla/antigay.json'))
 const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 
@@ -90,7 +95,54 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
 	        }
         	})
-
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=======================================================[ WELCOME ]==============================================================*/                  	    
+            nayla.on('group-participants-update', async (anu) => {
+	    	if (!welkom.includes(anu.jid)) return
+		    try {
+			const mdata = await nayla.groupMetadata(anu.jid)
+			console.log(anu)
+			if (anu.action == 'add') {
+		    num = anu.participants[0]
+		    try {
+			ppimg = await nayla.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+		    } catch {
+			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+		    }
+			teks = `╔════════════════════\n`
+			teks += `║╭───────────────────\n`
+			teks += `║│➻ *HALO @${num.split('@')[0]}*\n`
+			teks += `║│➻ *SELAMAT DATANG DIGRUB*\n`
+			teks += `║│➻ *${mdata.subject}*\n`			
+			teks += `║╰───────────────────\n`
+			teks += `╠══[ *WELCOME [•] NEW* ]════\n`
+			teks += `║╭───────[ *INTRO* ]──────\n`
+			teks += `║│➻ *NAMA* :\n`
+			teks += `║│➻ *UMUR* :\n`
+			teks += `║│➻ *GENDER* :\n`
+			teks += `║│➻ *ASKOT* :\n`
+			teks += `║│➻ *AGAMA* :\n`
+			teks += `║│➻ *ALASAN BERGABUNG* :\n`
+			teks += `║╰───────────────────\n`
+			teks += `╚════════════════════\n`
+			let buff = await getBuffer(ppimg)
+		    nayla.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			} else if (anu.action == 'remove') {
+			num = anu.participants[0]
+			try {
+			ppimg = await nayla.getProfilePicture(`${num.split('@')[0]}@c.us`)
+			} catch {
+			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+			}
+			teks = `akhirnya beban group berkurang 𝟭,bye bye🥳 @${num.split('@')[0]} jasamu akan di kubur dalam²`
+			let buff = await getBuffer(ppimg)
+			nayla.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			}
+		    } catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		    }
+	        })
+	 
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
                 	 	         
@@ -102,7 +154,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			if (nay.key && nay.key.remoteJid == 'status@broadcast') return
 			if (nay.key.fromMe) return
 			global.prefix
-			global.blocked
+			global.blocked		
 			const content = JSON.stringify(nay.message)
 			const from = nay.key.remoteJid
 			const type = Object.keys(nay.message)[0]
@@ -113,6 +165,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			budy = (type === 'conversation') ? nay.message.conversation : (type === 'extendedTextMessage') ? nay.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
+			const q = args.join(' ')
 			const isCmd = body.startsWith(prefix)             
             const tescuk = ["0@s.whatsapp.net"]
 			const botNumber = nayla.user.jid
@@ -134,6 +187,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			const isAntigay = isGroup ? antigay.includes(from) : false
 			const isAntibocil = isGroup ? antibocil.includes(from) : false
 			const isAntiwibu = isGroup ? antiwibu.includes(from) : false
+			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isAntijawa = isGroup ? antijawa.includes(from) : false 
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -161,8 +215,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
 			if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			let authorname = nayla.contacts[from] != undefined ? nayla.contacts[from].vname || nayla.contacts[from].notify : undefined	
-			if (authorname != undefined) { } else { authorname = groupName }	
- 	        cr = `BOT WHATSAPP NEW`             
+			if (authorname != undefined) { } else { authorname = groupName }	 	                   
            
            // YG VCARD INI GANTI SESUKA KALIAN DI SETTING                    
             const vcard = 'BEGIN:VCARD\n' 
@@ -178,8 +231,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
             + 'FN:OTHER\n'
             + 'ORG:OWNER;\n'
             + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
-            + 'END:VCARD'	
-            
+            + 'END:VCARD'	            
 			switch(command) {
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEEE ]==============================================================*/                  	    
@@ -187,12 +239,11 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 
 				case 'help':
 				case 'menu':
-const menu1 = fs.readFileSync('image/menu.jpg')
 runtime = process.uptime()
 	menuF = `╔════════════════════
 ║╭───────────────────
 ║│➻ *BOT WHATSAPP NEW* 
-║│➻ *OWNER* : YOUR_NAME
+║│➻ *OWNER* : ${ownername}
 ║│➻ *AUTHOR* : NAYLA CHAN
 ║│➻ *NAMEBOT* : BOTWA
 ║│https://github.com/naylachan
@@ -214,10 +265,7 @@ runtime = process.uptime()
 ║│➻ *${prefix}ytsearch*
 ║│➻ *${prefix}ytmp3*
 ║│➻ *${prefix}ytmp4*
-║│➻ *${prefix}playmp3*
-║│➻ *${prefix}playmp32*
-║│➻ *${prefix}playmp4*
-║│➻ *${prefix}playmp42*
+║│➻ *${prefix}play*
 ║│➻ *${prefix}stalktwit*
 ║│➻ *${prefix}stalkgithub*
 ║╰──────────────────
@@ -332,6 +380,9 @@ runtime = process.uptime()
 ║│➻ *${prefix}linkgc*
 ║│➻ *${prefix}tagall*
 ║│➻ *${prefix}delete*
+║│➻ *${prefix}ssweb*
+║│➻ *${prefix}smoke*
+║│➻ *${prefix}rainbow*
 ║╰───────────────────
 ╠═══[ *RANDOM1•MENU* ]═══
 ║╭───────────────────
@@ -377,7 +428,6 @@ runtime = process.uptime()
 ╠═══[ *RANDOM3•MENU* ]═══
 ║╭───────────────────
 ║│➻ *${prefix}stalkig*
-║│➻ *${prefix}quran*
 ║│➻ *${prefix}estetikpic*
 ║│➻ *${prefix}memeindo*
 ║│➻ *${prefix}darkjokes*
@@ -482,12 +532,58 @@ runtime = process.uptime()
 ║│➻ *${prefix}quotes2*
 ║│➻ *${prefix}quotes1*
 ║╰──────────────────
+╠════[ *STORAGE•MENU* ]═══
+║╭──────────────────
+║│➻ *${prefix}toimg*
+║│➻ *${prefix}readmore*
+║│➻ *${prefix}chatlist*
+║│➻ *${prefix}addsticker*
+║│➻ *${prefix}addvn*
+║│➻ *${prefix}getvn*
+║│➻ *${prefix}getsticker*
+║│➻ *${prefix}liststicker*
+║│➻ *${prefix}listvn*
+║│➻ *${prefix}addimage*
+║│➻ *${prefix}getimage*
+║│➻ *${prefix}imagelist*
+║│➻ *${prefix}addvideo*
+║│➻ *${prefix}getvideo*
+║│➻ *${prefix}listvideo*
+║╰───────────────────
+╠═══[ *SOUND•MENU* ]═══
+║╭───────────────────
+║│➻ *${prefix}sound1*
+║│➻ *${prefix}sound2*
+║│➻ *${prefix}sound3*
+║│➻ *${prefix}sound4*
+║│➻ *${prefix}sound5*
+║│➻ *${prefix}sound6*
+║│➻ *${prefix}sound7*
+║│➻ *${prefix}sound8*
+║│➻ *${prefix}sound9*
+║│➻ *${prefix}sound10*
+║│➻ *${prefix}sound11*
+║│➻ *${prefix}sound12*
+║│➻ *${prefix}sound13*
+║│➻ *${prefix}sound14*
+║│➻ *${prefix}sound15*
+║│➻ *${prefix}sound16*
+║│➻ *${prefix}sound17*
+║│➻ *${prefix}sound18*
+║│➻ *${prefix}sound19*
+║│➻ *${prefix}sound20*
+║│➻ *${prefix}sound21*
+║│➻ *${prefix}sound22*
+║│➻ *${prefix}sound23*
+║│➻ *${prefix}sound24*
+║╰──────────────────
 ╠═════[ *INFO•BOT* ]══════
 ║╭──────────────────
 ║│➻ *saya tidak menjamin 100%* 
 ║│➻ *fitur bot ini work/sukses*
 ║│➻ *(gunakan dengan bijak oky)*
 ║│➻ *sc full api FREEEEE*
+║│➻ *by ${ownername}*
 ║╰──────────────────
 ╠══════[ *THX TO* ]═══════
 ║╭──────────────────
@@ -496,7 +592,7 @@ runtime = process.uptime()
 ║│➻ *ARA•ARA TEAM* 
 ║╰──────────────────
 ╚════════════════════`
-nayla.sendMessage(from, menu1, image, {caption: menuF, quoted: nay})
+costum(menuF, text, tescuk, cr)
 break
 // JGN HARUS TQTO
 // JGN DI PERJUAL BELIKAN
@@ -512,108 +608,43 @@ break
 
 
 
-		            /*=========================================*/
-                    /* YT DOWNLOAD INI "ERROR" GW GK TAU KNP :) */
-                    /* JADI SILAHKAN GUNAKAN CASE LAIN YA */
-                    /*=========================================*/       
+		            case 'play':
+		            if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
+					costum('[❗] PROSES LOADING', text, tescuk, cr) 
+		            anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/yt-play?q=${body.slice(6)}`, {method: 'get'})
+		            anu1 = await getBuffer(anu.thumb)
+		            anu2 = `➻ *JUDUL* : ${anu.title}\n`
+		            anu2 += `➻ *UPLOAD* : ${anu.uploaded}\n`
+		            anu2 += `➻ *DURASI* : ${anu.duration}\n`
+		            anu2 += `➻ *VIEW* : ${anu.total_view}\n`
+		            anu2 += `➻ *CHANNEL* : ${anu.channel}\n`
+		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`
+		            anu3 = await getBuffer(anu.link)
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: nay})
+		            break
 		            case 'ytmp3':
-					if (args.length < 1) return reply('MASUKKAN URL/LINK YT') 
-					costum('[❗] PROSES LOADING', text, tescuk, cr)
-					anu = await fetchJson(`https://videfikri.com/api/ytmp3/?url=${args[0]}`, {method: 'get'})
-					anu1 = await getBuffer(anu.result.thumbnail)
-					anu2 = `➻ *JUDUL* : ${anu.result.judul}\n`
-					anu2 += `➻ *SIZE* : ${anu.result.size}\n`
-					anu2 += `➻ *ID* : ${anu.result.id}\n`
-					anu2 += `➻ *URL* : ${anu.result.url}\n`
-					anu2 += `➻ *TYPE* : ${anu.result.extension}\n`
-					anu2 += `➻ *LINK* : ${anu.result.source}\n`
-					anu2 += `➻ *SOUND SEDANG DIKIRIM*\n`
-					nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})					
-					anu3 = await getBuffer(anu.result.url)
-					nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.result.judul}.mp3`, quoted: nay})
-					break 
-                    case 'ytmp4':
-                    if (args.length < 1) return reply('MASUKKAN URL/LINK YT')
-					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.wrogf())
-					anu = await fetchJson(`https://videfikri.com/api/ytmp4/?url=${args[0]}`, {method: 'get'})
-                    anu1 = await getBuffer(anu.result.imgUrl)
-                    anu2 = `➻ *JUDUL* : ${anu.result.judul}\n`
-                    anu2 += `➻ *ID* : ${anu.result.id}\n`
-                    anu2 += `➻ *LINK* : ${anu.result.source}\n`
-                    anu2 += `➻ *URL* : ${anu.result.urlVideo}\n`
-                    anu2 += `➻ *[❗] VIDEO SEDANG DIKIRIM*\n`
-                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-                    anu3 = await getBuffer(anu.result.urlVideo)
-                    nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', quoted: nay})
-                    break 
-                    case 'playmp3':
-                    if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
-					costum('[❗] PROSES LOADING', text, tescuk, cr)
-                    anu = await fetchJson(`https://videfikri.com/api/ytplay/?query=${args[0]}`, {method: 'get'})
-                    anu1 = await getBuffer(anu.result.thumbnail)
-                    anu2 = `➻ *JUDUL* : ${anu.result.title}\n`
-                    anu2 += `➻ *ID* : ${anu.result.id}\n`
-                    anu2 += `➻ *CHANNEL* : ${anu.result.channel}\n`
-                    anu2 += `➻ *AKTIF* : ${anu.result.published_on}\n`
-                    anu2 += `➻ *VIEWS* : ${anu.result.views}\n`
-                    anu2 += `➻ *DURASI* : ${anu.result.duration}\n`
-                    anu2 += `➻ *UKURAN* : ${anu.result.size}\n`
-                    anu2 += `➻ *URL* : ${anu.result.url}\n`
-                    anu2 += `➻ *DESK* : ${anu.result.description}\n`
-                    anu2 += `➻ [❗] SOUND SEDANG DIKIRIM\n`
-                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-                    anu3 = await getBuffer(anu.result.url)
-                    nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', quoted: nay})
-                    break
-                    case 'playmp32':
-                    if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
-					costum('[❗] PROSES LOADING', text, tescuk, cr)
-                    anu = await fetchJson(`https://videfikri.com/api/ytplayv2/?query=${args[0]}`, {method: 'get'})
-                    anu1 = await getBuffer(anu.result.thumbnail)
-                    anu2 = `➻ *JUDUL* : ${anu.result.title}\n`
-                    anu2 += `➻ *ID* : ${anu.result.id}\n`
-                    anu2 += `➻ *TYPE* : ${anu.result.extension}\n`                   
-                    anu2 += `➻ *NAMA* : ${anu.result.channel}\n`
-                    anu2 += `➻ *AKTIF* : ${anu.result.published_on}\n`
-                    anu2 += `➻ *VIEWS* : ${anu.result.views}\n`
-                    anu2 += `➻ *DURASI* : ${anu.result.duration}\n`
-                    anu2 += `➻ *UKURAN* : ${anu.result.size}\n`
-                    anu2 += `➻ *DESKRIPSI* : ${anu.result.description}\n`
-                    nayla.sendMessage(from, anu1, image,{caption: anu2, quoted:nay})
-                    anu3 = await getBuffer(anu.result.url)
-                    nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', quoted: nay})
-                    break                                                                                                                    
-                    case 'playmp4':
-                    if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
-					costum('[❗] PROSES LOADING', text, tescuk, cr)
-                    anu = await fetchJson(`https://videfikri.com/api/playmp4/?query=${args[0]}`, {method: 'get'})
-                    anu1 = await getBuffer(anu.result.imgUrl)
-                    anu2 = `➻ *JUDUL* : ${anu.result.judul}\n`
-                    anu2 += `➻ *ID* : ${anu.result.id}\n`
-                    anu2 += `➻ *LINK* : ${anu.result.source}\n`
-                    anu2 += `➻ *URL* : ${anu.result.urlVideo}\n`
-                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-                    anu3 = await getBuffer(anu.result.urlVideo)
-                    nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', quoted: nay})
-                    break 
-                    case 'playmp42':
-                    if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
-					costum('[❗] PROSES LOADING', text, tescuk, cr)
-                    anu = await fetchJson(`https://videfikri.com/api/playmp4v2/?query=${args[0]}`, {method: 'get'})
-                    anu1 = getBuffer(anu.result.imgUrl)
-                    anu2 = `➻ *JUDUL* : ${anu.result.judul}\n`
-                    anu2 += `➻ *ID* : ${anu.result.id}\n`
-                    anu2 += `➻ *LINK* : ${anu.result.source}\n`
-                    anu2 += `➻ *URL* : ${anu.result.urlVideo}\n`
-                    anu2 += `➻ *PUBLIC* : ${anu.result.published_on}\n`
-                    anu2 += `➻ *VIEWS* : ${anu.result.views}\n`
-                    anu2 += `➻ *UKURAN* : ${anu.result.size}\n`
-                    anu2 += `➻ *DURASI* : ${anu.result.duration}\n`
-                    anu2 += `➻ *DESKRIPSI* : ${anu.result.description}\n`
-                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-                    anu3 = await getBuffer(anu.result.urlVideo)
-                    nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', quoted: nay})               
-                    break  
+		            if (args.length < 1) return reply('MASUKKAN LINK YT') 
+					costum('[❗] PROSES LOADING', text, tescuk, cr) 
+		            anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/ytmp3?url=${body.slice(7)}`, {method: 'get'})
+		            anu1 = await getBuffer(anu.thumb)
+		            anu2 = `➻ *JUDUL* : ${anu.title}\n`
+		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`		           		 
+		            anu3 = await getBuffer(anu.result)
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: nay})
+		            break
+		            case 'ytmp4':
+		            if (args.length < 1) return reply('MASUKKAN LINK YT') 
+					costum('[❗] PROSES LOADING', text, tescuk, cr) 
+		            anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/ytmp3?url=${body.slice(7)}`, {method: 'get'})
+		            anu1 = await getBuffer(anu.thumb)
+		            anu2 = `➻ *JUDUL* : ${anu.title}\n`
+		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`		           		 
+		            anu3 = await getBuffer(anu.result)
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+		            nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: nay})
+		            break
                     case 'stalktwit':
                     if (args.length < 1) return reply('MASUKKAN USERNAME') 
 					costum('[❗] PROSES LOADING', text, tescuk, cr) 
@@ -2172,7 +2203,178 @@ break
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
 /*====================================================[ API?? NOT API ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
+                   
+                   case 'ssweb':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} https://google.com*`)                  
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`http://anu-team.herokuapp.com/api/ssweb?url=${body.slice(7)}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nih kack`, quoted: nay})
+                   break
+                   case 'smoke':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(7)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api-rull.herokuapp.com/api/Photooxy/smoke?text=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break 
+                   case 'rainbow':
+                   if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
+                   F = body.slice(9)
+                   costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                   anu = await getBuffer(`https://api-rull.herokuapp.com/api/Photooxy/rainbowshine?text=${F}`)
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   break                                      
+                                        				                                                                                                                                                                              
+/* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
+/*====================================================[ API?? NOT API ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	                                          
                     
+                    
+                    
+                    case 'toimg': 
+					costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+					encmedia = JSON.parse(JSON.stringify(nay).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					media = await nayla.downloadAndSaveMediaMessage(encmedia)
+					ran = getRandom('.png')
+					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+					fs.unlinkSync(media) 
+					buffer = fs.readFileSync(ran)
+			        nayla.sendMessage(from, buffer, image, {quoted: nay, caption: 'nihh kack'})
+				    fs.unlinkSync(ran)
+					})					
+			    	break 
+                    case 'readmore':
+			    	case 'more':
+			    	const more = String.fromCharCode(8206)
+			    	const readmore = more.repeat(4001)
+				    if (!q.includes('|')) return  reply(ind.wrongf())
+                    const text1 = q.substring(0, q.indexOf('|') - 0)
+                    const text2 = q.substring(q.lastIndexOf('|') + 1)
+                    reply( text1 + readmore + text2)
+                    break
+                    case 'chatlist':
+		         	case 'cekchat':
+		  	    	nayla.updatePresence(from, Presence.composing)
+			    	var itsme = `0@s.whatsapp.net`
+			    	var split = `ALL CHAT BOTZ`
+		     		var selepbot =         {
+					contextInfo:   {
+					participant: itsme,
+					quotedMessage: {
+					extendedTextMessage: {
+					text: split,
+	     			}
+     				}
+	    			}
+			      	}
+			     	teks = `Total : ${totalchat.length}`
+			    	nayla.sendMessage(from, teks, MessageType.text, selepbot)
+		    		break
+	                case 'addsticker':          
+			    	if (!isQuotedSticker) return reply('Reply stiker nya')
+			     	svst = body.slice(12)
+			    	if (!svst) return reply('Nama sticker nya apa?')
+			    	boij = JSON.parse(JSON.stringify(nay).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+			     	delb = await nayla.downloadMediaMessage(boij)
+			       	setiker.push(`${svst}`)
+			    	fs.writeFileSync(`./src/sticker/${svst}.webp`, delb)
+			     	fs.writeFileSync('./src/stik.json', JSON.stringify(setiker))
+			    	nayla.sendMessage(from, `Sukses Menambahkan Sticker kedalam database\nSilahkan Cek dengan cara ${prefix}liststicker`, MessageType.text, { quoted: nay})
+      				break
+		        	case 'addvn':
+			    	if (!isQuotedAudio) return reply('Reply vnnya blokk!')
+			    	svst = body.slice(7)
+		    		if (!svst) return reply('Nama audionya apa su?')
+			    	boij = JSON.parse(JSON.stringify(nay).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+			    	delb = await nayla.downloadMediaMessage(boij)
+			    	audionye.push(`${svst}`)
+			     	fs.writeFileSync(`./src/audio/${svst}.mp3`, delb)
+			     	fs.writeFileSync('./src/audio.json', JSON.stringify(audionye))
+			     	nayla.sendMessage(from, `Sukses Menambahkan Vn ke dalam database\nSilahkann Cek dengan cara ${prefix}listvn`, MessageType.text, { quoted: nay}) 
+			      	break
+		         	case 'getvn':
+			        if (args.length < 1) return reply('Masukan nama yang terdaftar di list vn')
+			     	namastc = body.slice(7)
+				    buffer = fs.readFileSync(`./src/audio/${namastc}.mp3`)
+			    	nayla.sendMessage(from, buffer, audio, { mimetype: 'audio/mp4',  quoted: nay})
+			     	break
+			        case 'getsticker':
+		        	case 'gets':
+		        	if (args.length < 1) return reply('Masukan nama yang terdaftar di list sticker')
+		      		namastc = body.slice(12)
+			     	result = fs.readFileSync(`./src/sticker/${namastc}.webp`)
+			    	nayla.sendMessage(from, result, sticker)
+			     	break
+                    case 'liststicker':
+		     		teks = '*Sticker List :*\n\n'
+	    			for (let awokwkwk of setiker) {
+			 		teks += `- ${awokwkwk}\n`
+    				}
+		      		teks += `\n*Total : ${setiker.length}*`
+		      		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+		      		break
+		        	case 'listvn':
+	         		case 'vnlist':
+		     		teks = '*List Vn:*\n\n'
+		     		for (let awokwkwk of audionye) {
+					teks += `- ${awokwkwk}\n`
+			      	}
+			    	teks += `\n*Total : ${audionye.length}*`
+		    		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+		    		break
+		        	case 'addimage':
+		     		if (!isQuotedImage) return reply('Reply imagenya blokk!')
+			    	svst = body.slice(10)
+			    	if (!svst) return reply('Nama imagenya apa su?')
+		     		boij = JSON.parse(JSON.stringify(nay).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+	 	     		delb = await nayla.downloadMediaMessage(boij)
+		     		imagenye.push(`${svst}`)
+			    	fs.writeFileSync(`./src/image/${svst}.jpeg`, delb)
+			    	fs.writeFileSync('./src/image.json', JSON.stringify(imagenye))
+		      		nayla.sendMessage(from, `Sukses Menambahkan image ke dalam database\nSilahkan cek dengan cara ${prefix}listimage`, MessageType.text, { quoted: nay})		     	 
+		     		break
+		        	case 'getimage':
+                    case 'getimg':
+			        if (args.length < 1) return reply('Masukan nama yang terdaftar di list image')
+	      			namastc = body.slice(10)
+	      			buffer = fs.readFileSync(`./src/image/${namastc}.jpeg`)
+    				nayla.sendMessage(from, buffer, image, {  quoted: nay})
+	      			break
+		        	case 'imagelist':
+		        	case 'listimage':
+		    		teks = '*List Image :*\n\n'
+		    		for (let awokwkwk of imagenye) {
+					teks += `- ${awokwkwk}\n`
+			      	}
+			    	teks += `\n*Total : ${imagenye.length}*`
+			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+			    	break
+		        	case 'addvideo':
+			    	if (!isQuotedVideo) return reply('Reply videonya blokk!')
+			    	svst = body.slice(10)
+			     	if (!svst) return reply('Nama videonya apa su?')
+			     	boij = JSON.parse(JSON.stringify(nay).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+			    	delb = await nayla.downloadMediaMessage(boij)
+			    	videonye.push(`${svst}`)
+			    	fs.writeFileSync(`./src/video/${svst}.mp4`, delb)
+			     	fs.writeFileSync('./src/video.json', JSON.stringify(videonye))
+			      	nayla.sendMessage(from, `Sukses Menambahkan Video\nCek dengan cara ${prefix}listvideo`, MessageType.text, { quoted: nay}) 
+	     			break
+			        case 'getvideo':
+		    	    if (args.length < 1) return reply('Masukan nama yang terdaftar di list video')
+			    	namastc = body.slice(10)
+			    	buffer = fs.readFileSync(`./src/video/${namastc}.mp4`)
+			    	nayla.sendMessage(from, buffer, video, { mimetype: 'video/mp4', quoted: nay})
+			       	break
+		           	case 'listvideo':
+	           		case 'videolist':
+	    			teks = '*List Video :*\n\n'
+	    			for (let awokwkwk of videonye) {
+					teks += `- ${awokwkwk}\n`
+		    		}
+			    	teks += `\n*Total : ${videonye.length}*`
+			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+			      	break				                         
                     case 'setprefix':
 				    if (args.length < 1) return
 			        if (!isOwner) return reply(`lu owner?`)
@@ -2294,11 +2496,126 @@ break
 				    case 'd':
 				    nayla.deleteMessage(from, { id: nay.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true }) 
 				    break 
+				     
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ CASE ANTIII ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+                    
+                    case 'sound1':
+                    const sound2 = fs.readFileSync('sound/sound2.mp3')
+                    nayla.sendMessage(from, sound2, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break 
+                    case 'sound3':
+                    const sound3 = fs.readFileSync('sound/sound3.mp3')
+                    nayla.sendMessage(from, sound3, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break 
+                    case 'sound4':
+                    const sound4 = fs.readFileSync('sound/sound4.mp3')
+                    nayla.sendMessage(from, sound4, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break      
+                    case 'sound5':
+                    const sound5 = fs.readFileSync('sound/sound5.mp3')
+                    nayla.sendMessage(from, sound5, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break           
+                    case 'sound6':
+                    const sound6 = fs.readFileSync('sound/sound6.mp3')
+                    nayla.sendMessage(from, sound6, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound7':
+                    const sound7 = fs.readFileSync('sound/sound7.mp3')
+                    nayla.sendMessage(from, sound7, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound8':
+                    const sound8 = fs.readFileSync('sound/sound8.mp3')
+                    nayla.sendMessage(from, sound8, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound9':
+                    const sound9 = fs.readFileSync('sound/sound9.mp3')
+                    nayla.sendMessage(from, sound9, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound10':
+                    const sound10 = fs.readFileSync('sound/sound10.mp3')
+                    nayla.sendMessage(from, sound10, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound11':
+                    const sound11 = fs.readFileSync('sound/sound11.mp3')
+                    nayla.sendMessage(from, sound11, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound12':
+                    const sound12 = fs.readFileSync('sound/sound12.mp3')
+                    nayla.sendMessage(from, sound12, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound13':
+                    const sound13 = fs.readFileSync('sound/sound13.mp3')
+                    nayla.sendMessage(from, sound13, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound14':
+                    const sound14 = fs.readFileSync('sound/sound14.mp3')
+                    nayla.sendMessage(from, sound14, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound15':
+                    const sound15 = fs.readFileSync('sound/sound15.mp3')
+                    nayla.sendMessage(from, sound15, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound16':
+                    const sound16 = fs.readFileSync('sound/sound16.mp3')
+                    nayla.sendMessage(from, sound16, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound17':
+                    const sound17 = fs.readFileSync('sound/sound17.mp3')
+                    nayla.sendMessage(from, sound17, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound18':
+                    const sound18 = fs.readFileSync('sound/sound18.mp3')
+                    nayla.sendMessage(from, sound18, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound19':
+                    const sound19 = fs.readFileSync('sound/sound19.mp3')
+                    nayla.sendMessage(from, sound19, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound20':
+                    const sound20 = fs.readFileSync('sound/sound20.mp3')
+                    nayla.sendMessage(from, sound20, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound21':
+                    const sound21 = fs.readFileSync('sound/sound21.mp3')
+                    nayla.sendMessage(from, sound21, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound22':
+                    const sound22 = fs.readFileSync('assets/sound22.mp3')
+                    nayla.sendMessage(from, sound22, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound23':
+                    const sound23 = fs.readFileSync('sound/sound23.mp3')
+                    nayla.sendMessage(from, sound23, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break              
+                    case 'sound24':
+                    const sound24 = fs.readFileSync('sound/sound24.mp3')
+                    nayla.sendMessage(from, sound24, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                                                        
+                     
+                     
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ CASE ANTIII ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
 
-                    
+                   	case 'welcome':
+					if (!isGroup) return reply(`GROUP ONLY`)
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isWelkom) return reply('*SUDAH AKTIF* !!!')
+					welkom.push(from)
+					fs.writeFileSync('./nayla/welkom.json', JSON.stringify(welkom))
+					reply('[❗] SUKSES AKTIF WELCOME')
+					} else if (Number(args[0]) === 0) {
+					welkom.splice(from, 1)
+				    fs.writeFileSync('./nayla/welkom.json', JSON.stringify(welkom))
+				    reply('[❗] SUKSES NONAKTIF WELCOME')
+					} else {
+					reply(`......`)
+					}
+					break  
                     case 'antilink': 
 					if (!isGroupAdmins) return reply(`LU ADMIN??`)
 					if (args.length < 1) return reply('PILIH 1/0')
@@ -2379,10 +2696,8 @@ break
 					reply(`PILIH 1/0`)
 					}
 					break
-					 
-					 
 					
-                    
+ 			 										                    
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ ANTI RANDOM ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
@@ -2774,7 +3089,7 @@ break
 					reply("5detik")
 					}, 0)
 				    }				    
-				    
+				   
 				     
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEE ]==============================================================*/                  	    
