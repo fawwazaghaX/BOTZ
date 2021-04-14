@@ -2,6 +2,9 @@
 /*=====================================================[ API FRREEEE ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
 
+// BTW SEBAGIAN FITUR PERLU API XTEAM.
+// JADI BELI SENDIRI XIXIXI
+// https//:api.xteam.xyz
 // MAU AMBIL CASE CARI SINI YA???
 // SILAHKAN BRO:)
 // TAPI SETIDAK NYA ADD NAMA GW DI THX TO BOT KLEAN
@@ -34,6 +37,8 @@ const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const moment = require('moment-timezone')
 const imgbb = require('imgbb-uploader')
+const PhoneNumber = require('awesome-phonenumber')
+const { nyz } = require('./reply')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const videonye = JSON.parse(fs.readFileSync('./src/video.json'))
@@ -42,9 +47,12 @@ const imagenye = JSON.parse(fs.readFileSync('./src/image.json'))
 const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
 prefix = setting.prefix
 blocked = []
-apiKey = setting.apiKey
+apixteam = setting.apixteam
 cr = setting.cr
+cr1 = setting.cr1
+cr2 = setting.cr2
 ownername = setting.ownername
+
 // NOTE MAU UBAH??? SILAHKAN UBAH DI SRC + SETTINGS.JSON
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ ROOM TO FILE ]==============================================================*/                  	                         	 
@@ -56,10 +64,10 @@ const antijawa = JSON.parse(fs.readFileSync('./nayla/antijawa.json'))
 const welkom = JSON.parse(fs.readFileSync('./nayla/welkom.json'))
 const antigay = JSON.parse(fs.readFileSync('./nayla/antigay.json'))
 const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
+const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
-/*======================================================[ TIME BOTZ ]==============================================================*/                  	                    	 
-
+/*======================================================[ TIME BOTZ ]==============================================================*/                  	                    	              
             function kyun(seconds){
             function pad(s){
             return (s < 10 ? '0' : '') + s;
@@ -72,7 +80,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ CONNECTING  ]==============================================================*/                  	    
-                    	 
+                	 
             async function starts() {
         	const nayla = new WAConnection()
 	        nayla.logger.level = 'warn'
@@ -97,6 +105,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
         	})
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=======================================================[ WELCOME ]==============================================================*/                  	    
+             
             nayla.on('group-participants-update', async (anu) => {
 	    	if (!welkom.includes(anu.jid)) return
 		    try {
@@ -142,6 +151,10 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			console.log('Error : %s', color(e, 'red'))
 		    }
 	        })
+	        const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
+            const nayBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            const bulan = nayBulan[moment().format('MM') - 1]
+
 	 
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
@@ -188,7 +201,8 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			const isAntibocil = isGroup ? antibocil.includes(from) : false
 			const isAntiwibu = isGroup ? antiwibu.includes(from) : false
 			const isWelkom = isGroup ? welkom.includes(from) : false
-			const isAntijawa = isGroup ? antijawa.includes(from) : false 
+			const isAntijawa = isGroup ? antijawa.includes(from) : false	
+			const isBotx = isGroup ? botx.includes(from) : false						
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
@@ -196,7 +210,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			nayla.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
 			}				
 			const reply = (teks) => {
-				nayla.sendMessage(from, teks, text, {quoted:nay})
+				nayla.sendMessage(from, teks, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 			}
 			const apikey = setting.apiKey
 			const sendMess = (hehe, teks) => {
@@ -204,8 +218,7 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			}			
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? nayla.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : nayla.sendMessage(from, teks.trim(), extendedText, {quoted: nay, contextInfo: {"mentionedJid": memberr}})
-			}
-
+			}           
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
@@ -216,398 +229,66 @@ const antibocil = JSON.parse(fs.readFileSync('./nayla/antibocil.json'))
 			if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			let authorname = nayla.contacts[from] != undefined ? nayla.contacts[from].vname || nayla.contacts[from].notify : undefined	
 			if (authorname != undefined) { } else { authorname = groupName }	 	                   
-           
+            const kapan2 = [
+			'Hari ini',
+			'Mungkin besok',
+			'1 Minggu lagi',
+			'Masih lama',
+			'3 Bulan lagi',
+			'7 Bulan lagi',
+			'3 Tahun lagi',
+			'4 Bulan lagi',
+			'2 Bulan lagi',
+			'1 Tahun lagi',
+			'1 Bulan lagi',
+			'Coba ulangi',
+			]
+			const apa = [
+			'Ya',
+			'Mungkin',
+			'Tidak',
+			'Coba Ulangi',
+			]
+			var chat1 = `0@s.whatsapp.net`
+		    var split = `ALL CHAT BOTZ`
+		    var chat2 =         {
+			contextInfo:   {
+			participant: chat1,
+			quotedMessage: {
+			extendedTextMessage: {
+	    	text: split,
+	     	}
+     		}
+	    	}
+		 	}
+	       tchat = `Total : ${totalchat.length}`
            // YG VCARD INI GANTI SESUKA KALIAN DI SETTING                    
             const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
-            + 'FN:OWNER\n' 
-            + 'ORG: OWNER REALL;\n' 
-            + 'TEL;type=CELL;type=VOICE;waid=${ownerNumber}:${ownerNumber}\n' 
+            + `FN:${ownername}\n` 
+            + `ORG: Pengembang bot;\n`
+            + `TEL;type=CELL;type=VOICE;waid=${setting.ownerNumber}:${PhoneNumber('+' + setting.ownerNumber).getNumber('international')}\n` 
             + 'END:VCARD' 
             
             // YG VCARD1 INI JGN DI UBAH YAAA
             const vcard1 = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
             + 'FN:OTHER\n'
-            + 'ORG:OWNER;\n'
+            + 'ORG:TEMAN OWNER;\n'
             + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
             + 'END:VCARD'	            
 			switch(command) {
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEEE ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
-
-				case 'help':
-				case 'menu':
-runtime = process.uptime()
-	menuF = `╔════════════════════
-║╭───────────────────
-║│➻ *BOT WHATSAPP NEW* 
-║│➻ *OWNER* : ${ownername}
-║│➻ *AUTHOR* : NAYLA CHAN
-║│➻ *NAMEBOT* : BOTWA
-║│https://github.com/naylachan
-║╰───────────────────
-╠════[ *ANTI•MENU* ]══════
-║╭───────────────────
-║│➻ *${prefix}antilink*
-║│➻ *${prefix}antigay*
-║│➻ *${prefix}antibocil*
-║│➻ *${prefix}antiwibu*
-║│➻ *${prefix}antijawa*
-║╰───────────────────
-╠════[ *MENU•MEDIA* ]══════
-║╭───────────────────
-║│➻ *${prefix}fb*
-║│➻ *${prefix}steam*
-║│➻ *${prefix}igfoto*
-║│➻ *${prefix}igvideo*
-║│➻ *${prefix}ytsearch*
-║│➻ *${prefix}ytmp3*
-║│➻ *${prefix}ytmp4*
-║│➻ *${prefix}play*
-║│➻ *${prefix}stalktwit*
-║│➻ *${prefix}stalkgithub*
-║╰──────────────────
-╠════[ *FUN•MENU* ]══════
-║╭──────────────────
-║│➻ *${prefix}simi*
-║│➻ *${prefix}hilih*
-║│➻ *${prefix}jumlah*
-║│➻ *${prefix}hurufkebalik*
-║│➻ *${prefix}spamcall*
-║│➻ *${prefix}spamemail*
-║│➻ *${prefix}fakta*
-║│➻ *${prefix}gcard*
-║│➻ *${prefix}quotes*
-║│➻ *${prefix}tebakgambar*
-║╰───────────────────
-╠════[ *INFO•MENU* ]═════
-║╭───────────────────
-║│➻ *${prefix}neko*
-║│➻ *${prefix}quotesnime*
-║│➻ *${prefix}kbbilazimedia*
-║│➻ *${prefix}covid*
-║│➻ *${prefix}wikiid*
-║│➻ *${prefix}wikien*
-║│➻ *${prefix}covidid*
-║│➻ *${prefix}kbbi*
-║│➻ *${prefix}infogempa*
-║│➻ *${prefix}randomquran*
-║│➻ *${prefix}kisanabi*
-║╰───────────────────
-╠════[ *MAKER•MENU* ]═════
-║╭───────────────────
-║│➻ *${prefix}8bit*
-║│➻ *${prefix}burn*
-║│➻ *${prefix}fire*
-║│➻ *${prefix}google*
-║│➻ *${prefix}battle*
-║│➻ *${prefix}block*
-║│➻ *${prefix}candy*
-║│➻ *${prefix}potter*
-║│➻ *${prefix}silk*
-║│➻ *${prefix}water*
-║│➻ *${prefix}pubg*
-║│➻ *${prefix}neon*
-║│➻ *${prefix}coffe1*
-║│➻ *${prefix}coffe*
-║│➻ *${prefix}tiktok*
-║│➻ *${prefix}shadow*
-║│➻ *${prefix}romance*
-║│➻ *${prefix}glass*
-║│➻ *${prefix}naruto*
-║│➻ *${prefix}mug1*
-║│➻ *${prefix}love*
-║│➻ *${prefix}mug*
-║│➻ *${prefix}neon1*
-║╰───────────────────
-╠═══[ *SIMPLE•MENU* ]═════
-║╭───────────────────
-║│➻ *${prefix}artinama*
-║│➻ *${prefix}artimimpi*
-║│➻ *${prefix}artijadian*
-║│➻ *${prefix}chord*
-║│➻ *${prefix}lirik*
-║╰───────────────────
-╠══[ *SERTIFIKAT•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}ff1*
-║│➻ *${prefix}ff2*
-║│➻ *${prefix}ff3*
-║│➻ *${prefix}ff4*
-║│➻ *${prefix}ff5*
-║│➻ *${prefix}ff6*
-║│➻ *${prefix}ml1*
-║│➻ *${prefix}ml2*
-║│➻ *${prefix}ml3*
-║│➻ *${prefix}ml4*
-║│➻ *${prefix}ml5*
-║│➻ *${prefix}hacker*
-║│➻ *${prefix}yutub*
-║│➻ *${prefix}jamet*
-║│➻ *${prefix}fuckboy*
-║│➻ *${prefix}goodlooking*
-║│➻ *${prefix}editor*
-║╰───────────────────
-╠══[ *SERTIFIKAT2•MENU* ]══
-║╭───────────────────
-║│➻ *${prefix}goodboy*
-║│➻ *${prefix}goodgirl*
-║│➻ *${prefix}badgirl*
-║│➻ *${prefix}badboy*
-║│➻ *${prefix}pintar*
-║│➻ *${prefix}surga*
-║│➻ *${prefix}sadboy*
-║│➻ *${prefix}pacar*
-║│➻ *${prefix}gay*
-║│➻ *${prefix}bucin*
-║│➻ *${prefix}bocil*
-║│➻ *${prefix}babu*
-║│➻ *${prefix}haram*
-║│➻ *${prefix}tweet*
-║│➻ *${prefix}pubg1*
-║│➻ *${prefix}pubg2*
-║│➻ *${prefix}pubg3*
-║│➻ *${prefix}pubg4*
-║╰───────────────────
-╠═══[ *TAMBAHAN•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}sticker*
-║│➻ *${prefix}stickergif*
-║│➻ *${prefix}bc*
-║│➻ *${prefix}clearall*
-║│➻ *${prefix}linkgc*
-║│➻ *${prefix}tagall*
-║│➻ *${prefix}delete*
-║│➻ *${prefix}ssweb*
-║│➻ *${prefix}smoke*
-║│➻ *${prefix}rainbow*
-║╰───────────────────
-╠═══[ *RANDOM1•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}twich*
-║│➻ *${prefix}loli*
-║│➻ *${prefix}randomhusbu*
-║│➻ *${prefix}fake*
-║│➻ *${prefix}pinterest*
-║│➻ *${prefix}qrcode*
-║│➻ *${prefix}resepmasakan*
-║│➻ *${prefix}barcode*
-║│➻ *${prefix}cersex*
-║│➻ *${prefix}cerpen*
-║│➻ *${prefix}anime*
-║│➻ *${prefix}anime1*
-║│➻ *${prefix}yuri*
-║│➻ *${prefix}tongue*
-║│➻ *${prefix}jadwalsholat*
-║│➻ *${prefix}pantun*
-║│➻ *${prefix}cuaca*
-║│➻ *${prefix}namaninja*
-║╰───────────────────
-╠═══[ *RANDOM2•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}randomwaifu*
-║│➻ *${prefix}randomwaifu1*
-║│➻ *${prefix}neko1*
-║│➻ *${prefix}kusonime*
-║│➻ *${prefix}renungan*
-║│➻ *${prefix}samehadaku*
-║│➻ *${prefix}neon1*
-║│➻ *${prefix}text3d*
-║│➻ *${prefix}galaxy*
-║│➻ *${prefix}gaming*
-║│➻ *${prefix}colors*
-║│➻ *${prefix}kling*
-║│➻ *${prefix}infonomer*
-║│➻ *${prefix}jadwaltv*
-║│➻ *${prefix}tvjadwal*
-║│➻ *${prefix}fml*
-║│➻ *${prefix}cinta*
-║╰───────────────────
-╠═══[ *RANDOM3•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}stalkig*
-║│➻ *${prefix}estetikpic*
-║│➻ *${prefix}memeindo*
-║│➻ *${prefix}darkjokes*
-║│➻ *${prefix}nickff*
-║│➻ *${prefix}tahta*
-║│➻ *${prefix}neon2*
-║│➻ *${prefix}wall*
-║│➻ *${prefix}wolf*
-║│➻ *${prefix}tfire*
-║│➻ *${prefix}ytgold*
-║│➻ *${prefix}ytsilver*
-║│➻ *${prefix}t3d*
-║│➻ *${prefix}logoa*
-║│➻ *${prefix}pornhub*
-║│➻ *${prefix}marvel*
-║│➻ *${prefix}leavest*
-║│➻ *${prefix}phcoment*
-║│➻ *${prefix}nulis*
-║│➻ *${prefix}urlshort*
-║│➻ *${prefix}shortener*
-║╰───────────────────
-╠═══[ *RANDOM3•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}fox*
-║│➻ *${prefix}dog*
-║│➻ *${prefix}cat*
-║│➻ *${prefix}panda*
-║│➻ *${prefix}panda1*
-║│➻ *${prefix}bird*
-║│➻ *${prefix}koala*
-║│➻ *${prefix}meme* 
-║╰───────────────────
-╠═══[ *INDOHOT•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}indo1* 
-║│➻ *${prefix}indo2* 
-║│➻ *${prefix}indo3* 
-║│➻ *${prefix}indo4* 
-║│➻ *${prefix}indo5* 
-║│➻ *${prefix}indo6* 
-║│➻ *${prefix}indo7* 
-║│➻ *${prefix}indo8* 
-║│➻ *${prefix}indo9* 
-║│➻ *${prefix}indo10* 
-║│➻ *${prefix}indo11* 
-║│➻ *${prefix}indo12* 
-║│➻ *${prefix}indo13* 
-║│➻ *${prefix}indo14* 
-║│➻ *${prefix}indo15* 
-║│➻ *${prefix}indo16* 
-║│➻ *${prefix}indo17* 
-║│➻ *${prefix}indo18* 
-║│➻ *${prefix}indo19* 
-║│➻ *${prefix}indo20* 
-║│➻ *${prefix}indo21* 
-║│➻ *${prefix}indo22* 
-║│➻ *${prefix}indo23* 
-║│➻ *${prefix}indo24* 
-║│➻ *${prefix}indo25* 
-║╰──────────────────
-╠═════[ *INFO•BOT* ]═══════
-║╭──────────────────
-║│➻ *${prefix}ganteng*
-║│➻ *${prefix}cantik*
-║│➻ *${prefix}jelek*
-║│➻ *${prefix}goblok*
-║│➻ *${prefix}bego*
-║│➻ *${prefix}pinter*
-║│➻ *${prefix}jago*
-║│➻ *${prefix}babi*
-║│➻ *${prefix}beban*
-║│➻ *${prefix}baik*
-║│➻ *${prefix}jahat*
-║│➻ *${prefix}anjing*
-║│➻ *${prefix}monyet*
-║│➻ *${prefix}haram*
-║│➻ *${prefix}kontol*
-║│➻ *${prefix}pakboy*
-║│➻ *${prefix}pakgirl*
-║│➻ *${prefix}sadboy*
-║│➻ *${prefix}sadgirl*
-║│➻ *${prefix}wibu*
-║│➻ *${prefix}nolep*
-║│➻ *${prefix}hebat*
-║╰──────────────────
-╠═════[ *WALL•MENU* ]═══
-║╭──────────────────
-║│➻ *${prefix}wallteknologi*
-║│➻ *${prefix}wallhacker*
-║│➻ *${prefix}wallcyber*
-║│➻ *${prefix}wallmuslim*
-║│➻ *${prefix}wallpegunungan*
-║│➻ *${prefix}caklontong*
-║│➻ *${prefix}robot*
-║│➻ *${prefix}3dwhite*
-║│➻ *${prefix}daun*
-║│➻ *${prefix}metal1*
-║│➻ *${prefix}metal*
-║│➻ *${prefix}scary*
-║│➻ *${prefix}imo*
-║│➻ *${prefix}wallpaper*
-║│➻ *${prefix}quotes2*
-║│➻ *${prefix}quotes1*
-║╰──────────────────
-╠════[ *STORAGE•MENU* ]═══
-║╭──────────────────
-║│➻ *${prefix}toimg*
-║│➻ *${prefix}readmore*
-║│➻ *${prefix}chatlist*
-║│➻ *${prefix}addsticker*
-║│➻ *${prefix}addvn*
-║│➻ *${prefix}getvn*
-║│➻ *${prefix}getsticker*
-║│➻ *${prefix}liststicker*
-║│➻ *${prefix}listvn*
-║│➻ *${prefix}addimage*
-║│➻ *${prefix}getimage*
-║│➻ *${prefix}imagelist*
-║│➻ *${prefix}addvideo*
-║│➻ *${prefix}getvideo*
-║│➻ *${prefix}listvideo*
-║╰───────────────────
-╠═══[ *SOUND•MENU* ]═══
-║╭───────────────────
-║│➻ *${prefix}sound1*
-║│➻ *${prefix}sound2*
-║│➻ *${prefix}sound3*
-║│➻ *${prefix}sound4*
-║│➻ *${prefix}sound5*
-║│➻ *${prefix}sound6*
-║│➻ *${prefix}sound7*
-║│➻ *${prefix}sound8*
-║│➻ *${prefix}sound9*
-║│➻ *${prefix}sound10*
-║│➻ *${prefix}sound11*
-║│➻ *${prefix}sound12*
-║│➻ *${prefix}sound13*
-║│➻ *${prefix}sound14*
-║│➻ *${prefix}sound15*
-║│➻ *${prefix}sound16*
-║│➻ *${prefix}sound17*
-║│➻ *${prefix}sound18*
-║│➻ *${prefix}sound19*
-║│➻ *${prefix}sound20*
-║│➻ *${prefix}sound21*
-║│➻ *${prefix}sound22*
-║│➻ *${prefix}sound23*
-║│➻ *${prefix}sound24*
-║╰──────────────────
-╠═════[ *INFO•BOT* ]══════
-║╭──────────────────
-║│➻ *saya tidak menjamin 100%* 
-║│➻ *fitur bot ini work/sukses*
-║│➻ *(gunakan dengan bijak oky)*
-║│➻ *sc full api FREEEEE*
-║│➻ *by ${ownername}*
-║╰──────────────────
-╠══════[ *THX TO* ]═══════
-║╭──────────────────
-║│➻ *NAYLA CHAN*
-║│➻ *RYNZ*
-║│➻ *ARA•ARA TEAM* 
-║╰──────────────────
-╚════════════════════`
-costum(menuF, text, tescuk, cr)
-break
-// JGN HARUS TQTO
-// JGN DI PERJUAL BELIKAN
-// JGN AMPAS TAMPILAN GW
-// BY NAYLA CHAN		             		             
-
-// JELEK? IYA EMG JELEK :V  
-// MAU REQUEST FITUR??? 
-// CHAT GW wa.me/+62812874133914                              
-/* ======================================================[ MEDIA-API ]==============================================================*/    
-/*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
-/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
-
-
-
+			     	
+			     	 
+			     	
+			     	case 'help':
+			    	case 'menu':
+                    runtime = process.uptime()
+                    reply(nyz.menuZ(prefix, bulan, tchat, ownername))               
+                    break
 		            case 'play':
 		            if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
 					costum('[❗] PROSES LOADING', text, tescuk, cr) 
@@ -620,8 +301,8 @@ break
 		            anu2 += `➻ *CHANNEL* : ${anu.channel}\n`
 		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`
 		            anu3 = await getBuffer(anu.link)
-		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: nay})
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
+		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 		            break
 		            case 'ytmp3':
 		            if (args.length < 1) return reply('MASUKKAN LINK YT') 
@@ -631,8 +312,8 @@ break
 		            anu2 = `➻ *JUDUL* : ${anu.title}\n`
 		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`		           		 
 		            anu3 = await getBuffer(anu.result)
-		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: nay})
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
+		            nayla.sendMessage(from, anu3, audio, {mimetype: 'audio/mp4', filename: `${anu.title}`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 		            break
 		            case 'ytmp4':
 		            if (args.length < 1) return reply('MASUKKAN LINK YT') 
@@ -642,8 +323,8 @@ break
 		            anu2 = `➻ *JUDUL* : ${anu.title}\n`
 		            anu2 += `➻ *SIZE* : ${anu.filesize}\n`		           		 
 		            anu3 = await getBuffer(anu.result)
-		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
-		            nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: nay})
+		            nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
+		            nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 		            break
                     case 'stalktwit':
                     if (args.length < 1) return reply('MASUKKAN USERNAME') 
@@ -659,7 +340,7 @@ break
                     anu2 += `➻ *LIST* : ${anu.result.listed_count}\n`
                     anu2 += `➻ *FAVOURIT* : ${anu.result.favourites}\n`
                     anu2 += `➻ *JOIN* : ${anu.result.joined_on}\n`
-                    nayla.sendMessage(from, anu1, image,{caption: anu2, quoted: nay})
+                    nayla.sendMessage(from, anu1, image,{caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     case 'stalkgithub':
                     if (args.length < 1) return reply('MASUKKAN USERNAME') 
@@ -682,7 +363,7 @@ break
                     anu2 += `➻ *JOIN* : ${anu.result.joined_on}\n`
                     anu2 += `➻ *UPDATE* : ${anu.result.last_updated}\n`
                     anu2 += `➻ *URL* : ${anu.result.profile_url}\n`
-                    nayla.sendMessage(from, anu1, image,{caption: anu2, quoted: nay})
+                    nayla.sendMessage(from, anu1, image,{caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     case 'steam':
                     if (args.length < 1) return reply('MASUKKAN JUDUL') 
@@ -697,7 +378,7 @@ break
                     anu1 += `➻ *BADGES* : ${anu.result.badges}\n`
                     anu1 += `➻ *MENTS* : ${anu.result.achievements}\n`
                     anu1 += `➻ *ON* : ${anu.result.onkah}\n`
-                    nayla.sendMessage(from, anu1, text,{quoted: nay})
+                    nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break 
                     case 'fb':
                     if (args.length < 1) return reply('MASUKKAN LINK/URL FB') 
@@ -705,7 +386,7 @@ break
                     anu = await fetchJson(`https://videfikri.com/api/fbdl/?urlfb=${args[0]}`, {method: 'get'})
                     anu1 = await getBuffer(anu.result.url)
                     anu2 = `➻ *JUDUL* : ${anu.result.judul}\n`
-                    nayla.sendMessage(from, anu1, video, {caption: anu2, mimetype: 'video/mp4', quoted: nay})
+                    nayla.sendMessage(from, anu1, video, {caption: anu2, mimetype: 'video/mp4', quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break 
                     case 'igfoto':
                     if (args.length < 1) return reply('MASUKKAN LINK/URL FB') 
@@ -719,9 +400,9 @@ break
                     anu2 += `➻ *DURASI* : ${anu.result.duration}\n`
                     anu2 += `➻ *CAPTION* : ${anu.result.caption}\n` 
                     anu2 += `➻ *[❗] FOTO SEDANG DIKIRIM*\n`
-                    nayla.sendMessage(from, anu2, text, {quoted: nay})
+                    nayla.sendMessage(from, anu2, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     anu3 = await getBuffer(anu.result.image_text)
-                    nayla.sendMessage(from, anu3, image, {quoted: nay})
+                    nayla.sendMessage(from, anu3, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     case 'igvideo':
                     if (args.length < 1) return reply('MASUKKAN LINK/URL FB') 
@@ -735,9 +416,9 @@ break
                     anu2 += `➻ *DURASI* : ${anu.result.duration}\n`
                     anu2 += `➻ *CAPTION* : ${anu.result.caption}\n` 
                     anu2 += `➻ *[❗] VIDEO SEDANG DIKIRIM*\n`
-                    nayla.sendMessage(from, anu2, text, {quoted: nay})
+                    nayla.sendMessage(from, anu2, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     anu3 = await getBuffer(anu.result.video)
-                    nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', quoted: nay})
+                    nayla.sendMessage(from, anu3, video, {mimetype: 'video/mp4', quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break                          
                     case 'ytsearch':
                     if (args.length < 1) return reply('MASUKKAN LINK/URL FB') 
@@ -751,7 +432,7 @@ break
                     anu2 += `➻ *PUBLIC.AT* : ${anu.result.data.published_at}\n`
                     anu2 += `➻ *VIEWS* : ${anu.result.data.views}\n`
                     anu2 += `➻ *DESK* : ${anu.result.data.description}\n`  
-                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+                    nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break    
                          
 /* =======================================================[ FUN-API ]==============================================================*/    
@@ -762,26 +443,26 @@ break
                     if (args.length < 1) return reply('MASUKKAN TEXT') 
                     anu = await fetchJson(`https://videfikri.com/api/hurufterbalik/?query=${body.slice(14)}`)
                     anu1 = `${anu.result.kata}`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break    
                     case 'jumlah':
                     if (args.length < 1) return reply('MASUKKAN TEXT') 
                     anu = await fetchJson(`https://videfikri.com/api/jumlahhuruf/?query=${body.slice(8)}`)
                     anu1 = `${anu.result.jumlah}`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break       
                     case 'hilih':
                     if (args.length < 1) return reply('MASUKKAN TEXT') 
                     anu = await fetchJson(`https://videfikri.com/api/hilih/?query=${body.slice(7)}`)
                     anu1 = `${anu.result.kata}`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break       
                     case 'simsimi':
                     case 'simi':
                     if (args.length < 1) return reply('MASUKKAN TEXT')
                     anu = await fetchJson(`https://videfikri.com/api/simsimi?teks=${body.slice(9)}`)
                     anu1 = `${anu.result.pesan}`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break         
  
 /* ======================================================[ SPAM-API ]==============================================================*/    
@@ -811,12 +492,12 @@ break
                     anu = await fetchJson(`https://videfikri.com/api/randomquotes/`)
                     anu1 = `➻ *AUTHOR* : ${anu.result.author}\n`
                     anu1 += `➻ *QUOTES* : ${anu.result.quotes}\n`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     case 'fakta':
                     anu = await fetchJson(`https://videfikri.com/api/fakta/`)
                     anu1 = `➻ *FAKTA* : ${anu.result.fakta}\n`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break                                                  
                     case 'gcard':
                     anu = await fetchJson(`https://videfikri.com/api/ccgenerator/`)
@@ -830,14 +511,14 @@ break
                     anu1 += `➻ *NAMA* : ${anu.result.customer.name}\n`       
                     anu1 += `➻ *RESS* : ${anu.result.customer.address}\n`           
                     anu1 += `➻ *COUNTRY* : ${anu.result.customer.country}\n`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break                                                                                                                                                                                                                                                                                        
                     case 'tebakgambar':
                     anu = await fetchJson(`https://videfikri.com/api/tebakgambar/`)
                     anu1 = await getBuffer(anu.result.soal_gbr)
                     anu2 = `➻ *JAWABAN* : ${anu.result.jawaban}`
                     setTimeout( () => {
-                    nayla.sendMessage(from, anu1, image,{caption: 'JAWAB BRO... WAKTU 60 DETIK', quoted: nay})
+                    nayla.sendMessage(from, anu1, image,{caption: 'JAWAB BRO... WAKTU 60 DETIK', quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     }, 1)
                     setTimeout( () => {
                     costum('50 DETIK LAGI', text, tescuk, cr)
@@ -855,7 +536,7 @@ break
                     costum('10 DETIK LAGI', text, tescuk, cr)
                     }, 50000)                                                                                                                                                     
                     setTimeout( () => {
-                    nayla.sendMessage(from, anu2, text,{quoted: nay})                   
+                    nayla.sendMessage(from, anu2, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})                   
                     }, 60000)                                                                          
                     break                                                                                                                                           
 
@@ -867,14 +548,14 @@ break
                     costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                     anu = await fetchJson(`https://videfikri.com/api/anime/neko`)
                     anu1 = await getBuffer(anu.result.url_gbr)
-                    nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                    nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     case 'quotesnime':
                     anu = await fetchJson(`https://videfikri.com/api/anime/randomquoteanime`)
                     anu1 = `➻ *ANIME* : ${anu.result.anime}\n`
                     anu1 += `➻ *KARAKTER* : ${anu.result.character}\n`
                     anu1 += `➻ *QUOTES* : ${anu.result.quotes}\n`
-                    nayla.sendMessage(from, anu1, text, {quoted: nay})
+                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break
                     
 /* ======================================================[ ANJAY-API ]==============================================================*/    
@@ -908,7 +589,7 @@ break
                    anu1 += `➻ *PAGEID* : ${x.pageid}\n`
                    anu1 += `➻ *ULASAN* : ${x.isi_konten}\n`
                    }
-                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break  
                    case 'wikien':
                    if (args.length < 1) return reply('MASUKKAN QUERY') 
@@ -919,7 +600,7 @@ break
                    anu1 += `➻ *PAGEID* : ${x.pageid}\n`
                    anu1 += `➻ *ULASAN* : ${x.desc}\n`
                    }
-                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break   
                    case 'covidid':
                    anu = await fetchJson(`https://videfikri.com/api/covidindo/`)
@@ -945,7 +626,7 @@ break
                    anu1 += `➻ *MAGNITUDO* : ${anu.result.magnitudo}\n` 
                    anu1 += `➻ *KEDALAMAN* : ${anu.result.kedalaman}\n` 
                    anu1 += `➻ *MAP* : ${anu.result.map}\n`
-                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'randomquran':
                    anu = await fetchJson(`https://videfikri.com/api/randquran/`)
@@ -959,7 +640,7 @@ break
                    anu1 += `➻ *RUKUK* : ${anu.result.rukuk}\n`
                    anu1 += `➻ *ARTI* : ${anu.result.arti}\n`
                    anu1 += `➻ *KETERANGAN* : ${anu.result.keterangan}\n`
-                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'kisanabi':
                    if (args.length < 1) return reply('MASUKKAN NAMA NABI')
@@ -970,7 +651,7 @@ break
                    anu1 += `➻ *USIA* : ${anu.result.usia}\n`
                    anu1 += `➻ *TEMPAT LAHIR* : ${anu.result.tempat_lahir}\n`
                    anu1 += `➻ *ULASAN* : ${anu.result.description}\n`                    
-                   nayla.sendMessage(from, anu2, image,{caption: anu1, quoted: nay})
+                   nayla.sendMessage(from, anu2, image,{caption: anu1, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
 /* ====================================================[ MAKER-MENU ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
@@ -983,7 +664,7 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/8bit/?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'google':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} kamu & aku & dia*`)
@@ -993,21 +674,21 @@ break
 				   var F2 = F.split("&")[1]
                    var F3 = F.split("&")[2] 
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/gsuggest/?text1=${F1}&text2=${F2}&text3=${F3}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'fire':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(6)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/crossfirelogo/?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'burn':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(6)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/burnpaper/?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'battle':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot & whatsapp*`)
@@ -1016,56 +697,56 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/bf4/?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'mug':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(5)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/candlemug/?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                     case 'love':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(6)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/lovemsg/?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'mug1':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(6)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/mugflower?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'naruto':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/narutobanner?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'glass':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/paperonglass?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'romance':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(9)				    
                    anu = await getBuffer(`hthttps://videfikri.com/api/textmaker/romancetext?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'shadow':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/shadowtext?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'tiktok':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot & whatsapp*`)
@@ -1074,28 +755,28 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/tiktokeffect?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'coffe':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/coffeecup?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break  
                    case 'coffe1':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/coffeecup2?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'neon':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(6)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/glowingneon?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break  
                    case 'pubg':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot & whatsapp*`)
@@ -1104,14 +785,14 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/pubgmlogo?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'water':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/underwater?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'silk':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot & whatsapp*`)
@@ -1120,28 +801,28 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1]				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/silk?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'potter':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/hpotter?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'candy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/sweetcandy?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break                     
                    case 'block':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://videfikri.com/api/textmaker/woodblock?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                     
                    
@@ -1208,217 +889,217 @@ break
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/AnakHaramSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'babu':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/BabuSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'bucin':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/BucinSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'bocil':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/CilEpepSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'gay':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/GaySerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pacar':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PacarSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'sadboy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/SadBoySerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'surga':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/SurgaSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pintar':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PintarSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'badboy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/BadBoySerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'badgirl':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/BadGirlSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'goodgirl':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/GoodGirlSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'goodboy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/GoodBoySerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'editor':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/EditorBerkelasSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'goodlooking':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/GoodLookingSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'fuckboy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FucekBoySerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'jamet':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/JametSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'yutub':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/YoutuberSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'hacker':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/HekerSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break                     
                    case 'ff6':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti6/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pubg4':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PubgTourSerti4/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pubg3':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PubgTourSerti3/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pubg2':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PubgTourSerti2/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ml5':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/MLTourSerti5/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ml4':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/MLTourSerti4/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ml3':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/MLTourSerti3/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ml2':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/MLTourSerti2/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'tweet':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/Tweet/?text=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ml1':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/MLTourSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pubg2':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PubgTourSerti2/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'pubg1':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/PubgTourSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ff5':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti5/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ff4':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti4/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break                     
                    case 'ff3':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti3/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ff2':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti2/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
                    case 'ff1':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)               			    
                    anu = await getBuffer(`http://onlydevcity.xyz/FFSerti/img.php?nama=${args[0]}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break 
 
 /* ==================================================[ GK TAU v: -MENU ]==============================================================*/    
@@ -1430,19 +1111,19 @@ break
                    anu1 = await getBuffer(anu.image)
                    anu2 = `➻ *NAMA* : ${anu.name}\n`
                    anu2 += `➻ *DESC* : ${anu.desc}\n`
-                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'randomwaifu1':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)  
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/waifu2`)
                    anu1 = await getBuffer(anu.img)                    
-                   nayla.sendMessage(from, anu1, image, {quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'neko1':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/nekonime`)
                    anu1 = await getBuffer(anu.result)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'kusonime':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
@@ -1474,35 +1155,35 @@ break
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(7)				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/neon_light?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break  
                    case 'text3d':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/text3d?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break                   
                    case 'galaxy':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/galaxywp?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'gaming':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/gaming?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'colors':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/watercolor?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'kling':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -1511,7 +1192,7 @@ break
 				   var F1 = F.split("&")[0];
 				   var F2 = F.split("&")[1];    				    
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/sparkling?text1=${F1}&text2=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: nay}) 
+                   nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
                    break
                    case 'infonomer':
                    F = body.slice(11)
@@ -1552,14 +1233,14 @@ break
                    case 'loli':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/randomloli`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'randomhusbu':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/husbuando`)
                    anu1 = `➻ *NAMA* : ${anu.waifu}`
                    anu2 = await getBuffer(anu.image)
-                   nayla.sendMessage(from, anu2, image, {caption: anu1, quoted: nay})                   
+                   nayla.sendMessage(from, anu2, image, {caption: anu1, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})                   
                    break
                    case 'fake':
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/fake_identity`)
@@ -1591,14 +1272,14 @@ break
                    F = body.slice(11)
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/pinterest?url=${F}`)
                    anu1 = await getBuffer(anu.result)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'qrcode':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} halo sayang*`)  
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(8)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/qrcode?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'resepmasakan':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bakso*`)
@@ -1608,14 +1289,14 @@ break
                    anu2 = `➻ *NAMA* : ${anu.title}\n`
                    anu2 += `➻ *STATUS* : ${anu.langkah}\n`
                    anu2 += `➻ *BAHAN* : ${anu.bahan}\n`
-                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'barcode':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} halo sayang*`)  
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    F = body.slice(9)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/barcode_maker?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'cersex':
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/cersex`)                   
@@ -1634,17 +1315,17 @@ break
                    case 'anime':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/random_baguette`)
-                   nayla.sendMessage(from, anu, image, {quoted: nay})
+                   nayla.sendMessage(from, anu, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'anime1':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/random_dva`)
-                   nayla.sendMessage(from, anu, image, {quoted: nay})
+                   nayla.sendMessage(from, anu, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'yuri':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://docs-jojo.herokuapp.com/api/random_yuri`)
-                   nayla.sendMessage(from, anu, image, {quoted: nay})
+                   nayla.sendMessage(from, anu, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'tongue':
                    anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/tongue_twister`)
@@ -1714,7 +1395,7 @@ break
                    anu2 += `➻ *PRIVATE* : ${anu.is_private}\n`
                    anu2 += `➻ *BIO* : ${anu.bio}\n`
                    anu2 += `➻ *SOURCE* : ${anu.source}\n`
-                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: anu2, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'quran':
                    anu = await fetchJson(`https://api.zeks.xyz/api/randomquran`)
@@ -1732,19 +1413,19 @@ break
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://api.zeks.xyz/api/estetikpic?apikey=apivinz`)
                    anu1 = await getBuffer(anu.result.result)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'memeindo':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://api.zeks.xyz/api/memeindo?apikey=apivinz`)
                    anu1 = await getBuffer(anu.result)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'darkjokes':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://api.zeks.xyz/api/darkjokes?apikey=apivinz`)
                    anu1 = await getBuffer(anu.result)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'nickff':
                    anu = await fetchJson(`https://api.zeks.xyz/api/nickepep?apikey=apivinz`)
@@ -1759,56 +1440,56 @@ break
                    F = body.slice(7)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/hartatahta?text=${F}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'neon2':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(7)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/bneon?apikey=apivinz&text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break                    
                    case 'wall':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(6)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/breakwall?apikey=apivinz&text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break   
                    case 'wolf':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(6)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/wolflogo?apikey=apivinz&text1=rimurubotz&text2=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break 
                    case 'tfire':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(7)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/tfire?text=${F}&apikey=apivinz`)                   
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break                
                    case 'ytgold':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(8)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/gplaybutton?text=${F}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'ytsilver':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(10)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/splaybutton?text=${F}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 't3d':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(5)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=apivinz&text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'logoa':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
@@ -1817,7 +1498,7 @@ break
 				   var F2 = F.split("&")[1]; 
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/logoaveng?text1=${F1}&text2=${F2}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'pornhub':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
@@ -1826,7 +1507,7 @@ break
 				   var F2 = F.split("&")[1]; 
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/phlogo?text1=${F1}&text2=${F2}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'marvel':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
@@ -1835,14 +1516,14 @@ break
 				   var F2 = F.split("&")[1]; 
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/marvellogo?text1=${F1}&text2=${F2}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'leavest':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(9)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/leavest?text=${F}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break                    
                    case 'phcoment':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla&chan*`)
@@ -1851,14 +1532,14 @@ break
 				   var F2 = F.split("&")[1]; 
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/phub?apikey=apivinz&img=https://1.bp.blogspot.com/-x8KhcOBG-yw/XiU4pi1yWVI/AAAAAAAADBA/gK8tsLyc1lQ808A348IKzDCjf6fUBKONwCLcBGAsYHQ/s1600/cara%2Bbuat%2Bfoto%2Bprofil%2Bdi%2Bwhatsapp%2Bmenjadi%2Bunik.jpg&username=${F1}&msg=${F2}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'nulis':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(7)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${F}&apikey=apivinz`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'shortener':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command}https://link*`)
@@ -1889,49 +1570,49 @@ break
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/fox`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'dog':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/dog`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'cat':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/cat`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'panda':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/panda`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'panda1':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/red_panda`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'bird':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/birb`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'koala':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/img/koala`)
                    anu1 = await getBuffer(anu.link)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak mirip kamu`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'meme':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://some-random-api.ml/meme`)
                    anu1 = await getBuffer(anu.image)
-                   nayla.sendMessage(from, anu1, image, {caption: `nih kak`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nih kak`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    
               
@@ -2055,6 +1736,18 @@ break
 				   jds.push(C1.jid)
 				   mentions(D1, jds, true)
 				   break
+				   case 'kapankah':
+				   const kapan1 = body.slice(1)					 
+				   const kpnkh = kapan2[Math.floor(Math.random() * (kapan2.length))]
+				   const jawab1 = `Pertanyaan : *${kapan1}*\n\nJawaban: ${kpnkh}`
+      			   nayla.sendMessage(from, jawab1, text, {quoted: nay})
+				   break
+		           case 'apakah':
+				   const tanya = body.slice(1)				    
+				   const apkh = apa[Math.floor(Math.random() * (apa.length))]
+				   const jawab = `Pertanyaan : *${tanya}*\n\nJawaban: ${apkh}`
+				   nayla.sendMessage(from, jawab, text, {quoted: nay})
+				   break				  
                                                                                                
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
 /*====================================================[ API?? NOT API ]==============================================================*/                  	    
@@ -2066,7 +1759,7 @@ break
                    anu1 = JSON.parse(JSON.stringify(anu.result));
                    anu2=  anu1[Math.floor(Math.random() * anu1.length)];
                    anu3 = await getBuffer(anu2)
-                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'wallpegunungan': case 'walpegunungan':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
@@ -2074,7 +1767,7 @@ break
                    anu1 = JSON.parse(JSON.stringify(anu.result));
                    anu2=  anu1[Math.floor(Math.random() * anu1.length)];
                    anu3 = await getBuffer(anu2)
-                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'wallmuslim': case 'walmuslim':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
@@ -2082,7 +1775,7 @@ break
                    anu1 = JSON.parse(JSON.stringify(anu.result));
                    anu2=  anu1[Math.floor(Math.random() * anu1.length)];
                    anu3 = await getBuffer(anu2)
-                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'wallcyber': case 'walcyber':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
@@ -2090,7 +1783,7 @@ break
                    anu1 = JSON.parse(JSON.stringify(anu.result));
                    anu2=  anu1[Math.floor(Math.random() * anu1.length)];
                    anu3 = await getBuffer(anu2)
-                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'wallhacker': case 'walhacker':
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
@@ -2098,7 +1791,7 @@ break
                    anu1 = JSON.parse(JSON.stringify(anu.result));
                    anu2=  anu1[Math.floor(Math.random() * anu1.length)];
                    anu3 = await getBuffer(anu2)
-                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu3, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'quotes1':
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/randomquote/muslim?apikey=alpin1`)
@@ -2114,7 +1807,7 @@ break
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/random/wallpaper?apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'imo': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2122,7 +1815,7 @@ break
                    F = body.slice(5)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/lmo?text=${F}&theme=bintang&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'scary': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2130,7 +1823,7 @@ break
                    F = body.slice(7)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/yamaker?text=${F}&theme=scary-njir&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'metal': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2138,7 +1831,7 @@ break
                    F = body.slice(7)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/yamaker?text=${F}&theme=metal-epek&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'metal1': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2146,7 +1839,7 @@ break
                    F = body.slice(8)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/noti?text=${F}&theme=metal-wolf&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'daun': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2154,7 +1847,7 @@ break
                    F = body.slice(6)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/noti?text=${F}&theme=daun-kaki&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case '3dwhite': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2162,7 +1855,7 @@ break
                    F = body.slice(9)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/textmaker/neon9?text=${F}&theme=3dwhite&apikey=alpin1`)
                    anu1 = await getBuffer(anu.result.url)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'robot': 
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
@@ -2170,7 +1863,7 @@ break
                    F = body.slice(7)			                  
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/maker/special/transformer?text=${F}&apikey=alpin11`)
                    anu1 = await getBuffer(anu.result.results)
-                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu1, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'caklontong':
                    anu = await fetchJson(`https://alpin-api-2021.herokuapp.com/api/kuis/caklontong?apikey=alpin1`)                 
@@ -2178,7 +1871,7 @@ break
                    anu2 = `➻ *JAWABAN* : ${anu.result.jawaban}\n`
                    anu2 += `➻ *DESK* : ${anu.result.deskripsi}`
                    setTimeout( () => {
-                   nayla.sendMessage(from, anu1, text,{quoted: nay})
+                   nayla.sendMessage(from, anu1, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    }, 1)
                    setTimeout( () => {
                    costum('50 DETIK LAGI', text, tescuk, cr)
@@ -2196,7 +1889,7 @@ break
                    costum('10 DETIK LAGI', text, tescuk, cr)
                    }, 50000)                                                                                                                                                     
                    setTimeout( () => {
-                   nayla.sendMessage(from, anu2, text,{quoted: nay})                   
+                   nayla.sendMessage(from, anu2, text,{quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})                   
                    }, 60000)                                                                          
                    break               
                                                                                                                                                         
@@ -2208,21 +1901,21 @@ break
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} https://google.com*`)                  
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`http://anu-team.herokuapp.com/api/ssweb?url=${body.slice(7)}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nih kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nih kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break
                    case 'smoke':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(7)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api-rull.herokuapp.com/api/Photooxy/smoke?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break 
                    case 'rainbow':
                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nayla*`)
                    F = body.slice(9)
                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
                    anu = await getBuffer(`https://api-rull.herokuapp.com/api/Photooxy/rainbowshine?text=${F}`)
-                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                   nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                    break                                      
                                         				                                                                                                                                                                              
 /* ==================================================[ TAMBAHAN-MENU ]==============================================================*/    
@@ -2279,7 +1972,7 @@ break
 			       	setiker.push(`${svst}`)
 			    	fs.writeFileSync(`./src/sticker/${svst}.webp`, delb)
 			     	fs.writeFileSync('./src/stik.json', JSON.stringify(setiker))
-			    	nayla.sendMessage(from, `Sukses Menambahkan Sticker kedalam database\nSilahkan Cek dengan cara ${prefix}liststicker`, MessageType.text, { quoted: nay})
+			    	nayla.sendMessage(from, `Sukses Menambahkan Sticker kedalam database\nSilahkan Cek dengan cara ${prefix}liststicker`, MessageType.text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
       				break
 		        	case 'addvn':
 			    	if (!isQuotedAudio) return reply('Reply vnnya blokk!')
@@ -2290,13 +1983,13 @@ break
 			    	audionye.push(`${svst}`)
 			     	fs.writeFileSync(`./src/audio/${svst}.mp3`, delb)
 			     	fs.writeFileSync('./src/audio.json', JSON.stringify(audionye))
-			     	nayla.sendMessage(from, `Sukses Menambahkan Vn ke dalam database\nSilahkann Cek dengan cara ${prefix}listvn`, MessageType.text, { quoted: nay}) 
+			     	nayla.sendMessage(from, `Sukses Menambahkan Vn ke dalam database\nSilahkann Cek dengan cara ${prefix}listvn`, MessageType.text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
 			      	break
 		         	case 'getvn':
 			        if (args.length < 1) return reply('Masukan nama yang terdaftar di list vn')
 			     	namastc = body.slice(7)
 				    buffer = fs.readFileSync(`./src/audio/${namastc}.mp3`)
-			    	nayla.sendMessage(from, buffer, audio, { mimetype: 'audio/mp4',  quoted: nay})
+			    	nayla.sendMessage(from, buffer, audio, { mimetype: 'audio/mp4',  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 			     	break
 			        case 'getsticker':
 		        	case 'gets':
@@ -2311,7 +2004,7 @@ break
 			 		teks += `- ${awokwkwk}\n`
     				}
 		      		teks += `\n*Total : ${setiker.length}*`
-		      		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+		      		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 		      		break
 		        	case 'listvn':
 	         		case 'vnlist':
@@ -2320,7 +2013,7 @@ break
 					teks += `- ${awokwkwk}\n`
 			      	}
 			    	teks += `\n*Total : ${audionye.length}*`
-		    		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+		    		nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 		    		break
 		        	case 'addimage':
 		     		if (!isQuotedImage) return reply('Reply imagenya blokk!')
@@ -2331,14 +2024,14 @@ break
 		     		imagenye.push(`${svst}`)
 			    	fs.writeFileSync(`./src/image/${svst}.jpeg`, delb)
 			    	fs.writeFileSync('./src/image.json', JSON.stringify(imagenye))
-		      		nayla.sendMessage(from, `Sukses Menambahkan image ke dalam database\nSilahkan cek dengan cara ${prefix}listimage`, MessageType.text, { quoted: nay})		     	 
+		      		nayla.sendMessage(from, `Sukses Menambahkan image ke dalam database\nSilahkan cek dengan cara ${prefix}listimage`, MessageType.text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})		     	 
 		     		break
 		        	case 'getimage':
                     case 'getimg':
 			        if (args.length < 1) return reply('Masukan nama yang terdaftar di list image')
 	      			namastc = body.slice(10)
 	      			buffer = fs.readFileSync(`./src/image/${namastc}.jpeg`)
-    				nayla.sendMessage(from, buffer, image, {  quoted: nay})
+    				nayla.sendMessage(from, buffer, image, {  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 	      			break
 		        	case 'imagelist':
 		        	case 'listimage':
@@ -2347,7 +2040,7 @@ break
 					teks += `- ${awokwkwk}\n`
 			      	}
 			    	teks += `\n*Total : ${imagenye.length}*`
-			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 			    	break
 		        	case 'addvideo':
 			    	if (!isQuotedVideo) return reply('Reply videonya blokk!')
@@ -2358,13 +2051,13 @@ break
 			    	videonye.push(`${svst}`)
 			    	fs.writeFileSync(`./src/video/${svst}.mp4`, delb)
 			     	fs.writeFileSync('./src/video.json', JSON.stringify(videonye))
-			      	nayla.sendMessage(from, `Sukses Menambahkan Video\nCek dengan cara ${prefix}listvideo`, MessageType.text, { quoted: nay}) 
+			      	nayla.sendMessage(from, `Sukses Menambahkan Video\nCek dengan cara ${prefix}listvideo`, MessageType.text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
 	     			break
 			        case 'getvideo':
 		    	    if (args.length < 1) return reply('Masukan nama yang terdaftar di list video')
 			    	namastc = body.slice(10)
 			    	buffer = fs.readFileSync(`./src/video/${namastc}.mp4`)
-			    	nayla.sendMessage(from, buffer, video, { mimetype: 'video/mp4', quoted: nay})
+			    	nayla.sendMessage(from, buffer, video, { mimetype: 'video/mp4', quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 			       	break
 		           	case 'listvideo':
 	           		case 'videolist':
@@ -2373,7 +2066,7 @@ break
 					teks += `- ${awokwkwk}\n`
 		    		}
 			    	teks += `\n*Total : ${videonye.length}*`
-			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: nay})
+			    	nayla.sendMessage(from, teks.trim(), extendedText, {  quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 			      	break				                         
                     case 'setprefix':
 				    if (args.length < 1) return
@@ -2384,8 +2077,8 @@ break
                     case 'admin':
          	        case 'owner':
          	        case 'creator':
-                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard1}, MessageType.contact, { quoted: nay})
-                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: nay})
+                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard1}, MessageType.contact, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
+                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     nayla.sendMessage(from, 'TUHH NOMER OWNER KU [(>_<)] JANGAN KASARIN YAA',MessageType.text, { quoted: nay} )				
 					break    
                     case 'sticker':
@@ -2410,7 +2103,7 @@ break
 					})
 					.on('end', function () {
 					console.log('Finish')
-					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: nay})
+					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 				    fs.unlinkSync(media)
 					fs.unlinkSync(ran)
 					})
@@ -2435,7 +2128,7 @@ break
 					})
 					.on('end', function () {
 					console.log('Finish')
-					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: nay})
+					nayla.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
 					fs.unlinkSync(media)
 					fs.unlinkSync(ran)
 					})
@@ -2478,7 +2171,7 @@ break
 				    if (!isBotGroupAdmins) return reply(`BOT BUKAN ADMIN`)
 				    linkgc = await nayla.groupInviteCode (from)
 				    yeh = `https://chat.whatsapp.com/${linkgc}\n\nlink Group *${groupName}*`
-				    nayla.sendMessage(from, yeh, text, {quoted: nay})			       
+				    nayla.sendMessage(from, yeh, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})			       
 					break
 				    case 'tagall': 
 					if (!isGroupAdmins) return
@@ -2593,8 +2286,324 @@ break
                     const sound24 = fs.readFileSync('sound/sound24.mp3')
                     nayla.sendMessage(from, sound24, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
                     break                                                        
+                    case 'sound25':
+                    const sound25 = fs.readFileSync('sound/sound25.mp3')
+                    nayla.sendMessage(from, sound25, MessageType.audio, {mimetype: 'audio/mp4', ptt:true})
+                    break                                                        
                      
-                     
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=====================================================[ CASE ANTIII ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+
+            
+                    case 'asupan':
+                    anu = await fetchJson(`https://api.xteam.xyz/asupan/lasegar?APIKEY=${apixteam}`)
+                    anu1 = `➻ *NAMA* : ${anu.result.username}\n`                                                     
+                    anu1 += `➻ *USERNAME* : ${anu.result.full_name}\n`
+                    anu1 += `➻ *ID* : ${anu.result.profile_id}\n`
+                    anu1 += `➻ *BIO* : ${anu.result.biography}\n`
+                    anu1 += `➻ *FOLLOWERS* : ${anu.result.followers}\n`
+                    anu1 += `➻ *FOLLOWING* : ${anu.result.following}\n`
+                    anu1 += `➻ *URL* : ${anu.result.external_url}\n`
+                    anu1 += `➻ *PRIVATE* : ${anu.result.is_private}\n`
+                    anu1 += `➻ *VERIFY* : ${anu.result.is_verified}\n`
+                    anu1 += `➻ *TYPE* : ${anu.result.type}\n`
+                    anu1 += `➻ *COMENT* : ${anu.result.comment}\n`
+                    anu1 += `➻ *LIKE* : ${anu.result.like}\n`
+                    anu1 += `➻ *CAPTION* : ${anu.result.caption}\n`
+                    anu1 += `➻ *LINK* : ${anu.result.link}\n`
+                    anu2 = await getBuffer(anu.result.profile_pic_url_hd)
+                    nayla.sendMessage(from, anu2, image, {caption: anu1, quoted: nay})
+                    break
+                    case 'asupan1':
+                    anu = await fetchJson(`https://api.xteam.xyz/asupan/ptl?APIKEY=${apixteam}`)
+                    anu1 = `➻ *NAMA* : ${anu.result.username}\n`                                                     
+                    anu1 += `➻ *USERNAME* : ${anu.result.full_name}\n`
+                    anu1 += `➻ *ID* : ${anu.result.profile_id}\n`
+                    anu1 += `➻ *BIO* : ${anu.result.biography}\n`
+                    anu1 += `➻ *FOLLOWERS* : ${anu.result.followers}\n`
+                    anu1 += `➻ *FOLLOWING* : ${anu.result.following}\n`
+                    anu1 += `➻ *URL* : ${anu.result.external_url}\n`
+                    anu1 += `➻ *PRIVATE* : ${anu.result.is_private}\n`
+                    anu1 += `➻ *VERIFY* : ${anu.result.is_verified}\n`
+                    anu1 += `➻ *TYPE* : ${anu.result.type}\n`
+                    anu1 += `➻ *COMENT* : ${anu.result.comment}\n`
+                    anu1 += `➻ *LIKE* : ${anu.result.like}\n`
+                    anu1 += `➻ *CAPTION* : ${anu.result.caption}\n`
+                    anu1 += `➻ *LINK* : ${anu.result.link}\n`
+                    anu2 = await getBuffer(anu.result.profile_pic_url_hd)
+                    nayla.sendMessage(from, anu2, image, {caption: anu1, quoted: nay})
+                    break
+                    case 'asupan2':
+                    anu = await fetchJson(`https://api.xteam.xyz/asupan/wibu?APIKEY=${apixteam}`)
+                    anu1 = `➻ *NAMA* : ${anu.result.username}\n`                                                     
+                    anu1 += `➻ *USERNAME* : ${anu.result.full_name}\n`
+                    anu1 += `➻ *ID* : ${anu.result.profile_id}\n`
+                    anu1 += `➻ *BIO* : ${anu.result.biography}\n`
+                    anu1 += `➻ *FOLLOWERS* : ${anu.result.followers}\n`
+                    anu1 += `➻ *FOLLOWING* : ${anu.result.following}\n`
+                    anu1 += `➻ *URL* : ${anu.result.external_url}\n`
+                    anu1 += `➻ *PRIVATE* : ${anu.result.is_private}\n`
+                    anu1 += `➻ *VERIFY* : ${anu.result.is_verified}\n`
+                    anu1 += `➻ *TYPE* : ${anu.result.type}\n`
+                    anu1 += `➻ *COMENT* : ${anu.result.comment}\n`
+                    anu1 += `➻ *LIKE* : ${anu.result.like}\n`
+                    anu1 += `➻ *CAPTION* : ${anu.result.caption}\n`
+                    anu1 += `➻ *LINK* : ${anu.result.link}\n`
+                    anu2 = await getBuffer(anu.result.profile_pic_url_hd)
+                    nayla.sendMessage(from, anu2, image, {caption: anu1, quoted: nay})
+                    break
+                    case 'ngakak':
+                    anu = await getBuffer(`https://api.xteam.xyz/asupan/darkjoke?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {quoted: nay})
+                    break
+                    case 'nulis1':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} nama & kelas & nulis*`)
+                    var F = body.slice(8)
+			        var F1 = F.split("&")[0];
+			 	    var F2 = F.split("&")[1]; 
+			 	    var F3 = F.split("&")[2]; 
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis?nama=${F1}&kelas=${F2}&text=${F3}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nih kak`, quoted: nay})
+                    break
+                    case 'nulis2':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis2?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break 
+                    case 'nulis3':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis3?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break 
+                    case 'nulis4':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break 
+                    case 'nulis5':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis5?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break 
+                    case 'nulis6':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/magernulis6?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break                     
+                    case 'video1':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/poly?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'video2':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/bold?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'video3':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/glowing?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'video4':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/colorful?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'video5':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/army?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'video6':
+                    if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} bot whatsapp*`)
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr) 
+                    F = body.slice(8)              			    
+                    anu = await getBuffer(`https://api.xteam.xyz/videomaker/retro?text=${F}&APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, video, {caption: `Nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'orgy':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/orgy?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'nsfwneko':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/nsfwneko?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'mstrb':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/mstrb?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'manga':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/manga?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'jahy':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/jahy?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'hentaigif':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/hentaigif?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'hentai':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/hentai?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'glasses':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/glasses?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'gangbang':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/gangbang?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'ero':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/ero?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'cuckold':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/cuckold?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'blowjob':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/blowjob?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'bdsm':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/bdsm?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'ass':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/ass?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'ahegao':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/ahegao?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'zettairyouiki':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/zettairyouiki?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'wpnsfwmobile':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/wpnsfwmobile?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'wpmobile':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/wpmobile?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'wallpaper':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/wallpaper?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'thighs':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/thighs?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'uniform':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/uniform?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'tentacles':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/tentacles?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'sfwneko':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/sfwneko?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'pussy':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/pussy?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+                    case 'panties':
+                    if (!isBotx) return reply(nyz.botx(prefix))
+                    costum('[❗] SEDANG DIPROSES', text, tescuk, cr2) 
+                    anu = await getBuffer(`https://api.xteam.xyz/randomimage/panties?APIKEY=${apixteam}`)
+                    nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}}) 
+                    break
+  /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*=======================================================[ API XTEAM ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+                    
+                    
+                    
+                    
+                    
+                        
+
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ CASE ANTIII ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
@@ -2628,6 +2637,22 @@ break
 					antilink.splice(from, 1)
 					fs.writeFileSync('./nayla/antilink.json', JSON.stringify(antilink))
 					reply('*[❗] DEACTIVATED ANTILINK*')
+					} else {
+					reply(`PILIH 1/0`)
+					}
+					break
+					case 'botx': 
+					if (!isGroupAdmins) return reply(`LU ADMIN??`)
+					if (args.length < 1) return reply('PILIH 1/0')
+					if (Number(args[0]) === 1) {
+					if (isEventon) return reply('*SUDAH AKTIF* !!!')
+					botx.push(from)
+					fs.writeFileSync('./nayla/botx.json', JSON.stringify(botx))
+					reply('*[❗] ACTIVATED BOTX*')
+					} else if (Number(args[0]) === 0) {
+					botx.splice(from, 1)
+					fs.writeFileSync('./nayla/botx.json', JSON.stringify(botx))
+					reply('*[❗] DEACTIVATED BOTX*')
 					} else {
 					reply(`PILIH 1/0`)
 					}
@@ -2696,6 +2721,8 @@ break
 					reply(`PILIH 1/0`)
 					}
 					break
+					 
+					 
 					
  			 										                    
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
@@ -2735,6 +2762,7 @@ break
 					reply("5detik")
 					}, 0)
 				    }
+				    
 				   
                     if (budy.includes("syg")){
 					if (!isGroup) return
