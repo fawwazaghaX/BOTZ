@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+npm install awesome-phonenumber
 apt-get update
 apt-get upgrade
 apt-get install -y nodejs libwebp ffmpeg wget tesseract
