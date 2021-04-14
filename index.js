@@ -37,8 +37,7 @@ const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const moment = require('moment-timezone')
 const imgbb = require('imgbb-uploader')
-const PhoneNumber = require('awesome-phonenumber')
-const { nyz } = require('./reply')
+ const { nyz } = require('./reply')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const videonye = JSON.parse(fs.readFileSync('./src/video.json'))
@@ -262,21 +261,14 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 	    	}
 		 	}
 	       tchat = `Total : ${totalchat.length}`
-           // YG VCARD INI GANTI SESUKA KALIAN DI SETTING                    
+           // YG VCARD INI GANTI SESUKA KALIAN                
             const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + `FN:${ownername}\n` 
             + `ORG: Pengembang bot;\n`
-            + `TEL;type=CELL;type=VOICE;waid=${setting.ownerNumber}:${PhoneNumber('+' + setting.ownerNumber).getNumber('international')}\n` 
+             + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
             + 'END:VCARD' 
-            
-            // YG VCARD1 INI JGN DI UBAH YAAA
-            const vcard1 = 'BEGIN:VCARD\n'
-            + 'VERSION:3.0\n'
-            + 'FN:OTHER\n'
-            + 'ORG:TEMAN OWNER;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=62812874133914:+62 812-8741-33914\n'
-            + 'END:VCARD'	            
+                               
 			switch(command) {
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEEE ]==============================================================*/                  	    
@@ -2077,7 +2069,6 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
                     case 'admin':
          	        case 'owner':
          	        case 'creator':
-                    nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard1}, MessageType.contact, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     nayla.sendMessage(from, {displayname: "Jeff", vcard: vcard}, MessageType.contact, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     nayla.sendMessage(from, 'TUHH NOMER OWNER KU [(>_<)] JANGAN KASARIN YAA',MessageType.text, { quoted: nay} )				
 					break    
