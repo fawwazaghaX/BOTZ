@@ -1,4 +1,11 @@
-exports.menuZ = (prefix, bulan, tchat, ownername) => {
+
+
+// HALOO STAHH??? NGAPAIN KE SINI???
+// MENG HADEHHHH
+
+
+
+exports.menuZ = (prefix, bulan, tchat, ownername, ramadhan, natal, pancasila, tahunbaru, agustus) => {
 	return`╔════════════════════
 ║╭═══════════════════
 ║│➵ \`\`\`BOT WHATSAPP NEW\`\`\`
@@ -10,6 +17,8 @@ exports.menuZ = (prefix, bulan, tchat, ownername) => {
 ║╰═══════════════════─
 ╠════[ \`\`\`ANTI•MENU\`\`\` ]══════
 ║╭═══════════════════─
+║│➵ \`\`\`${prefix}bug\`\`\`
+║│➵ \`\`\`${prefix}slot\`\`\`
 ║│➵ \`\`\`${prefix}antilink\`\`\`
 ║│➵ \`\`\`${prefix}antigay\`\`\`
 ║│➵ \`\`\`${prefix}antibocil\`\`\`
@@ -31,7 +40,7 @@ exports.menuZ = (prefix, bulan, tchat, ownername) => {
 ║╰═══════════════════
 ╠════[ \`\`\`FUN•MENU\`\`\` ]══════
 ║╭═══════════════════
-║│➵ \`\`\`\`\`\`${prefix}simi\`\`\`
+║│➵ \`\`\`${prefix}simi\`\`\`
 ║│➵ \`\`\`${prefix}hilih\`\`\`
 ║│➵ \`\`\`${prefix}jumlah\`\`\`
 ║│➵ \`\`\`${prefix}hurufkebalik\`\`\`
@@ -89,47 +98,6 @@ exports.menuZ = (prefix, bulan, tchat, ownername) => {
 ║│➵ \`\`\`${prefix}artijadian\`\`\`
 ║│➵ \`\`\`${prefix}chord\`\`\`
 ║│➵ \`\`\`${prefix}lirik\`\`\`
-║╰═══════════════════─
-╠══[ \`\`\`SERTIFIKAT•MENU\`\`\` ]═══
-║╭═══════════════════─
-║│➵ \`\`\`${prefix}ff1\`\`\`
-║│➵ \`\`\`${prefix}ff2\`\`\`
-║│➵ \`\`\`${prefix}ff3\`\`\`
-║│➵ \`\`\`${prefix}ff4\`\`\`
-║│➵ \`\`\`${prefix}ff5\`\`\`
-║│➵ \`\`\`${prefix}ff6\`\`\`
-║│➵ \`\`\`${prefix}ml1\`\`\`
-║│➵ \`\`\`${prefix}ml2\`\`\`
-║│➵ \`\`\`${prefix}ml3\`\`\`
-║│➵ \`\`\`${prefix}ml4\`\`\`
-║│➵ \`\`\`${prefix}ml5\`\`\`
-║│➵ \`\`\`${prefix}hacker\`\`\`
-║│➵ \`\`\`${prefix}yutub\`\`\`
-║│➵ \`\`\`${prefix}jamet\`\`\`
-║│➵ \`\`\`${prefix}fuckboy\`\`\`
-║│➵ \`\`\`${prefix}goodlooking\`\`\`
-║│➵ \`\`\`${prefix}editor\`\`\`
-║╰═══════════════════─
-╠══[ \`\`\`SERTIFIKAT2•MENU\`\`\` ]══
-║╭═══════════════════─
-║│➵ \`\`\`${prefix}goodboy\`\`\`
-║│➵ \`\`\`${prefix}goodgirl\`\`\`
-║│➵ \`\`\`${prefix}badgirl\`\`\`
-║│➵ \`\`\`${prefix}badboy\`\`\`
-║│➵ \`\`\`${prefix}pintar\`\`\`
-║│➵ \`\`\`${prefix}surga\`\`\`
-║│➵ \`\`\`${prefix}sadboy\`\`\`
-║│➵ \`\`\`${prefix}pacar\`\`\`
-║│➵ \`\`\`${prefix}gay\`\`\`
-║│➵ \`\`\`${prefix}bucin\`\`\`
-║│➵ \`\`\`${prefix}bocil\`\`\`
-║│➵ \`\`\`${prefix}babu\`\`\`
-║│➵ \`\`\`${prefix}haram\`\`\`
-║│➵ \`\`\`${prefix}tweet\`\`\`
-║│➵ \`\`\`${prefix}pubg1\`\`\`
-║│➵ \`\`\`${prefix}pubg2\`\`\`
-║│➵ \`\`\`${prefix}pubg3\`\`\`
-║│➵ \`\`\`${prefix}pubg4\`\`\`
 ║╰═══════════════════─
 ╠═══[ \`\`\`TAMBAHAN•MENU\`\`\` ]═══
 ║╭═══════════════════─
@@ -371,7 +339,7 @@ exports.menuZ = (prefix, bulan, tchat, ownername) => {
 ║│➵ \`\`\`${prefix}gangbang\`\`\` 
 ║│➵ \`\`\`${prefix}ero\`\`\` 
 ║│➵ \`\`\`${prefix}cuckold\`\`\` 
-║│➵ \`\`\`${prefix}blowjob?\`\`\` 
+║│➵ \`\`\`${prefix}blowjob\`\`\` 
 ║│➵ \`\`\`${prefix}bdsm\`\`\` 
 ║│➵ \`\`\`${prefix}ass\`\`\` 
 ║│➵ \`\`\`${prefix}ahegao\`\`\` 
@@ -386,15 +354,157 @@ exports.menuZ = (prefix, bulan, tchat, ownername) => {
 ║│➵ \`\`\`${prefix}pussy\`\`\` 
 ║│➵ \`\`\`${prefix}panties\`\`\` 
 ║╰═══════════════════
+╠══════[ \`\`\`ANIME\`\`\` ]═══════
+║╭═══════════════════
+║│➵ \`\`\`${prefix}naruto\`\`\` 
+║│➵ \`\`\`${prefix}mikasa\`\`\` 
+║│➵ \`\`\`${prefix}eren\`\`\`  
+║│➵ \`\`\`${prefix}titan\`\`\`  
+║│➵ \`\`\`${prefix}levi\`\`\`  
+║│➵ \`\`\`${prefix}sakura\`\`\`  
+║│➵ \`\`\`${prefix}hinata\`\`\`  
+║│➵ \`\`\`${prefix}neji\`\`\`  
+║│➵ \`\`\`${prefix}minato\`\`\`  
+║│➵ \`\`\`${prefix}jiraya\`\`\`  
+║│➵ \`\`\`${prefix}tsunade\`\`\`  
+║│➵ \`\`\`${prefix}kiba\`\`\`  
+║│➵ \`\`\`${prefix}boruto\`\`\`  
+║│➵ \`\`\`${prefix}sarada\`\`\`  
+║│➵ \`\`\`${prefix}sasuke\`\`\`  
+║│➵ \`\`\`${prefix}madara\`\`\`  
+║│➵ \`\`\`${prefix}obito\`\`\`  
+║│➵ \`\`\`${prefix}obito\`\`\`  
+║│➵ \`\`\`${prefix}tanjiro\`\`\`  
+║│➵ \`\`\`${prefix}nezuko\`\`\`  
+║│➵ \`\`\`${prefix}luffy\`\`\`  
+║│➵ \`\`\`${prefix}zoro\`\`\`  
+║│➵ \`\`\`${prefix}sanji\`\`\` 
+║│➵ \`\`\`${prefix}gon\`\`\`  
+║│➵ \`\`\`${prefix}killua\`\`\`  
+║│➵ \`\`\`${prefix}sagiri\`\`\`  
+║│➵ \`\`\`${prefix}rimuru\`\`\`  
+║│➵ \`\`\`${prefix}natsu\`\`\`  
+║│➵ \`\`\`${prefix}genos\`\`\`  
+║│➵ \`\`\`${prefix}saitama\`\`\`  
+║│➵ \`\`\`${prefix}miku\`\`\`                   
+║╰═══════════════════
+╠══════[ \`\`\`RANDOM\`\`\` ]═══════
+║╭═══════════════════ 
+║│➵ \`\`\`${prefix}pin\`\`\` 
+║│➵ \`\`\`${prefix}foto\`\`\` 
+║│➵ \`\`\`${prefix}ramalnomer\`\`\` 
+║│➵ \`\`\`${prefix}ramalcinta\`\`\` 
+║│➵ \`\`\`${prefix}jodohbali\`\`\` 
+║│➵ \`\`\`${prefix}ramalnikah\`\`\` 
+║│➵ \`\`\`${prefix}taksirmimpi\`\`\` 
+║│➵ \`\`\`${prefix}suit\`\`\`
+║╰═══════════════════
+╠══════[ \`\`\`TEXTPRO\`\`\` ]═══════
+║╭═══════════════════  
+║│➵ \`\`\`${prefix}maker1\`\`\`                   
+║│➵ \`\`\`${prefix}maker2\`\`\`                   
+║│➵ \`\`\`${prefix}maker3\`\`\`                   
+║│➵ \`\`\`${prefix}maker4\`\`\`                   
+║│➵ \`\`\`${prefix}maker5\`\`\`                   
+║│➵ \`\`\`${prefix}maker6\`\`\`                   
+║│➵ \`\`\`${prefix}maker7\`\`\`                   
+║│➵ \`\`\`${prefix}maker8\`\`\`                   
+║│➵ \`\`\`${prefix}maker9\`\`\`                   
+║│➵ \`\`\`${prefix}maker10\`\`\`                   
+║│➵ \`\`\`${prefix}maker11\`\`\`                   
+║│➵ \`\`\`${prefix}maker12\`\`\`                   
+║│➵ \`\`\`${prefix}maker13\`\`\`                   
+║│➵ \`\`\`${prefix}maker14\`\`\`                   
+║│➵ \`\`\`${prefix}maker15\`\`\`                   
+║│➵ \`\`\`${prefix}maker16\`\`\`                   
+║│➵ \`\`\`${prefix}maker17\`\`\`                   
+║│➵ \`\`\`${prefix}maker18\`\`\`                   
+║╰═══════════════════
+╠══════[ \`\`\`TEXTPRO\`\`\` ]═══════
+║╭═══════════════════  
+║│➵ \`\`\`${prefix}maker19\`\`\`                   
+║│➵ \`\`\`${prefix}maker20\`\`\`         
+║│➵ \`\`\`${prefix}maker21\`\`\`                   
+║│➵ \`\`\`${prefix}maker22\`\`\`                   
+║│➵ \`\`\`${prefix}maker23\`\`\`                   
+║│➵ \`\`\`${prefix}maker24\`\`\`                   
+║│➵ \`\`\`${prefix}maker25\`\`\`                   
+║│➵ \`\`\`${prefix}maker26\`\`\`                   
+║│➵ \`\`\`${prefix}maker27\`\`\`                   
+║│➵ \`\`\`${prefix}maker28\`\`\`                   
+║│➵ \`\`\`${prefix}maker29\`\`\`                   
+║│➵ \`\`\`${prefix}maker30\`\`\`         
+║│➵ \`\`\`${prefix}maker31\`\`\`                   
+║│➵ \`\`\`${prefix}maker32\`\`\`                   
+║│➵ \`\`\`${prefix}maker33\`\`\`                   
+║│➵ \`\`\`${prefix}maker34\`\`\`                   
+║│➵ \`\`\`${prefix}maker35\`\`\`                   
+║│➵ \`\`\`${prefix}maker36\`\`\`                   
+║╰═══════════════════
+╠══════[ \`\`\`TEXTPRO\`\`\` ]═══════
+║╭═══════════════════  
+║│➵ \`\`\`${prefix}maker37\`\`\`                   
+║│➵ \`\`\`${prefix}maker38\`\`\`                   
+║│➵ \`\`\`${prefix}maker39\`\`\`                   
+║│➵ \`\`\`${prefix}maker40\`\`\`         
+║│➵ \`\`\`${prefix}maker41\`\`\`                   
+║│➵ \`\`\`${prefix}maker42\`\`\`                   
+║│➵ \`\`\`${prefix}maker43\`\`\`                   
+║│➵ \`\`\`${prefix}maker44\`\`\`                   
+║│➵ \`\`\`${prefix}maker45\`\`\`                   
+║│➵ \`\`\`${prefix}maker46\`\`\`                   
+║│➵ \`\`\`${prefix}maker47\`\`\`                   
+║│➵ \`\`\`${prefix}maker48\`\`\`                   
+║│➵ \`\`\`${prefix}maker49\`\`\`                   
+║│➵ \`\`\`${prefix}maker50\`\`\`         
+║│➵ \`\`\`${prefix}maker51\`\`\`                   
+║│➵ \`\`\`${prefix}maker52\`\`\`                   
+║│➵ \`\`\`${prefix}maker53\`\`\`                   
+║│➵ \`\`\`${prefix}maker54\`\`\`                   
+║│➵ \`\`\`${prefix}maker55\`\`\`                   
+║╰═══════════════════
+╠══════[ \`\`\`TEXTPRO\`\`\` ]═══════
+║╭═══════════════════  
+║│➵ \`\`\`${prefix}maker56\`\`\`                   
+║│➵ \`\`\`${prefix}maker57\`\`\`                   
+║│➵ \`\`\`${prefix}maker58\`\`\`                   
+║│➵ \`\`\`${prefix}maker59\`\`\`                   
+║│➵ \`\`\`${prefix}maker60\`\`\`         
+║│➵ \`\`\`${prefix}maker61\`\`\`                   
+║│➵ \`\`\`${prefix}maker62\`\`\`                   
+║│➵ \`\`\`${prefix}maker63\`\`\`                   
+║│➵ \`\`\`${prefix}maker64\`\`\`                   
+║│➵ \`\`\`${prefix}maker65\`\`\`                   
+║│➵ \`\`\`${prefix}maker66\`\`\`                   
+║│➵ \`\`\`${prefix}maker67\`\`\`                   
+║│➵ \`\`\`${prefix}maker68\`\`\`                   
+║│➵ \`\`\`${prefix}maker69\`\`\`                   
+║│➵ \`\`\`${prefix}maker70\`\`\`         
+║│➵ \`\`\`${prefix}maker71\`\`\`                   
+║│➵ \`\`\`${prefix}maker72\`\`\`                   
+║╰═══════════════════
+╠══════[ \`\`\`TIMERS\`\`\` ]═══════
+║╭═══════════════════
+║│➵ \`\`\`RAMADHAN\`\`\`
+║│${ramadhan.data.result}
+║│➵ \`\`\` NATAL\`\`\`
+║│${natal.data.result}
+║│➵ \`\`\`TAHUNBARU\`\`\`
+║│${tahunbaru.data.result}
+║│➵ \`\`\`KEMERDEKAAN\`\`\`
+║│${agustus.data.result}
+║╰═══════════════════
 ╠══════[ \`\`\`THX TO\`\`\` ]═══════
 ║╭═══════════════════
 ║│➵ \`\`\`NAYLA CHAN\`\`\`
 ║│➵ \`\`\`RYNZ\`\`\`
 ║│➵ \`\`\`ARA•ARA TEAM\`\`\` 
-║│\`\`\`github.com/naylachan\`\`\`
 ║╰═══════════════════
 ╚════════════════════`
 }
 exports.botx = (prefix) => {
 	return`[❗] MODE BOTX TIDAK AKTIF\nKETIK *${prefix}botx*\nUNTUK MENGAKTIFKAN`
 	}
+exports.error = (prefix, command) => {
+    return`[❗] ERROR SILAHKAN LAPORKAN KE OWNER. KETIK *${prefix}bug ${command}*`
+    }
