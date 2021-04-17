@@ -8,17 +8,31 @@
 // https//:api.xteam.xyz
 // MAU AMBIL CASE CARI SINI YA???
 // SILAHKAN BRO:)
-// TAPI SETIDAK NYA ADD NAMA GW DI THX TO BOT KLEAN
-// NAYLA CHAN
-// SEKIAN
+// MHWHEHE GK ADA YG LANGKA OM
 
 // BOSAN?? PUKULIN AJA ANAK YATIM
 // MAU NGADU AMA SIAPA? ORANG TUANYA??
 
+// CAPEK CAPEKK BIKIN CASE EHHH MALAH DIRECODE🗿
+
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEE ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+/*  
+    SPESIAL THX REST API :
+➻ onlydev
+➻ api-self
+➻ lindow
+➻ xteam
+➻ rull
+➻ anu-team
+➻ alpin
+➻ some-random-api
+➻ zeks
+➻ videfikri
+➻ jojo
 
+*/
 const {
     WAConnection,
     MessageType,
@@ -53,6 +67,7 @@ prefix = setting.prefix
 blocked = []
 apixteam = setting.apixteam
 cr = setting.cr
+tz = setting.tz
 cr1 = setting.cr1
 cr2 = setting.cr2
 ownername = setting.ownername
@@ -291,7 +306,7 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 			     	case 'help':
 			    	case 'menu':
                     runtime = process.uptime()
-                    reply(nyz.menuZ(prefix, bulan, tchat, ownername, ramadhan, natal, pancasila, tahunbaru, agustus))                                    
+                    reply(nyz.menuZ(prefix, bulan, tchat, ownername, ramadhan, natal, pancasila, tahunbaru, agustus, tz))                                    
                     break
 		            case 'play':
 		            if (args.length < 1) return reply('MASUKKAN JUDUL LAGU') 
@@ -461,13 +476,7 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
                     anu1 = `${anu.result.kata}`
                     nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
                     break       
-                    case 'simsimi':
-                    case 'simi':
-                    if (args.length < 1) return reply('MASUKKAN TEXT')
-                    anu = await fetchJson(`https://videfikri.com/api/simsimi?teks=${body.slice(9)}`)
-                    anu1 = `${anu.result.pesan}`
-                    nayla.sendMessage(from, anu1, text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: cr1 }}})
-                    break         
+                     
  
 /* ======================================================[ SPAM-API ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	    
@@ -1975,6 +1984,13 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
                     prefix = args[0]
                     reply(`Change Prefix To ${prefix} SUCCESS!`)					 
 					break 
+					 
+					case 'settz':
+				    if (args.length < 1) return
+			       // if (!isOwner) return reply(`lu owner?`)
+                    tz = args[0]
+                    reply(`Change tz To ${tz} SUCCESS!`)					 
+					break 
                     case 'admin':
          	        case 'owner':
          	        case 'creator':
@@ -3220,6 +3236,79 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
                      nayla.sendMessage(from, anu, image, {caption: `nih kack`, quoted: nay})
                      break
                     
+                                                                                                                           
+/* ===================================================[ BOT WHATSAPP ]==============================================================*/    
+/*====================================================[ API?? LINDOWAPI ]==============================================================*/                  	    
+/*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
+                     
+                     
+                     case 'attp':
+                     if (args.length < 1) return reply('Kasih teks lah omm')
+                     ini = body.slice(6)
+                     atetepe = await getBuffer(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(ini)}`)
+                     nayla.sendMessage(from, atetepe, sticker, {quoted: nay})
+                     break
+                     case 'katailham':
+                     anu = await fetchJson(`https://lindow-api.herokuapp.com/api/katailham?apikey=LindowApi`)
+                     anu1 = `➻ *KATA ILHAM* : ${anu.result}`
+                     reply(anu1)
+                     break
+                     case 'citacita':
+                     anu = await getBuffer(`https://lindow-api.herokuapp.com/api/citacita?apikey=LindowApi`)
+                     nayla.sendMessage(from, anu, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                     break
+                     case 'blackpink':
+                     costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                     anu = await getBuffer(`https://lindow-api.herokuapp.com/api/blackpink?apikey=LindowApi`)
+                     nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                     break
+                     case 'exo':
+                     costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                     anu = await getBuffer(`https://lindow-api.herokuapp.com/api/exo?apikey=LindowApi`)
+                     nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                     break
+                     case 'bts':
+                     costum('[❗] SEDANG DIPROSES', text, tescuk, cr)
+                     anu = await getBuffer(`https://lindow-api.herokuapp.com/api/bts?apikey=LindowApi`)
+                     nayla.sendMessage(from, anu, image, {caption: `nihh kack`, quoted: nay})
+                     break
+                     case 'simi':
+                     if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} hai sayang`)
+                     anu = await fetchJson(`https://lindow-api.herokuapp.com/api/simi?text=Halo&lang=id&apikey=LindowApi`)
+                     anu1 = `${anu.response.text}`
+                     reply(anu1)
+                     break
+                     case 'textfont':
+                     if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} rimuru`)
+                     F = body.slice(10)
+                     anu = await fetchJson(`http://kocakz.herokuapp.com/api/random/text/fancytext?text=${F}`)
+                     anu1 = `${anu.result}`
+                     reply(anu1)
+                     break
+                     case 'kapital':
+                     if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} rimuru`)
+                     F = body.slice(9)
+                     anu = await fetchJson(`https://api-self.herokuapp.com/api/kapital?teks=${F}`)
+                     anu1 = `${anu.result}`
+                     reply(anu1)
+                     break                      
+                     case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh':
+                     if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} rimuru`)
+                     F = body.slice(7)
+                     anu = await fetchJson(`https://api-self.herokuapp.com/api/${command}?teks=${F}`)
+                     anu1 = `${anu.result}`
+                     reply(anu1)
+                     break
+                     case 'boomtext':  
+                     if (args.length < 1) return reply(`[❗] CONTOH??\n*${prefix}${command} rimuru&50`)
+                     var F = body.slice(10)
+			         var F1 = F.split("&")[0];
+			 	     var F2 = F.split("&")[1]; 
+                     anu = await fetchJson(`https://api-self.herokuapp.com/api/repeater?teks=${F1}&jumlah=${F2}`)
+                     anu1 = `${anu.result}`
+                     reply(anu1)
+                     break
+                     
                      
                                                                                                                           
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
@@ -3740,9 +3829,10 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEE ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 				    
-                   if (body.startsWith(`${prefix}${command}`)) {
+                // INI GW KUNCI :v SOAL NYA SPAM
+                  /*  if (body.startsWith(`${prefix}${command}`)) {
                     costum('........................................', text, tescuk, `MAAF COMMAND *${prefix}${command}* TIDAK TERDAFTAR DI DALAM *${prefix}menu*`)             
-                     }
+                     }*/
               }   
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
