@@ -24,7 +24,7 @@
 Edit the required value in `config.json`. You can get the api key at [`LoL Human Rest API`](http://api.lolhuman.xyz/).
 ```json
 {
-    "apikey": "FREE",
+    "apikey": "YOUR_APIKEY",
     "prefix": "#",
     "owner": "62812874133914"
 }
