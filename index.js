@@ -2004,7 +2004,7 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 					 
 					case 'settz':
 				    if (args.length < 1) return
-			       // if (!isOwner) return reply(`lu owner?`)
+			        if (!isOwner) return reply(`lu owner?`)
                     tz = args[0]
                     reply(`Change tz To ${tz} SUCCESS!`)					 
 					break 
