@@ -21,7 +21,7 @@
 ```
 
 ## Edit config file
-Edit the required value in `config.json`. You can get the api key at [`BOTZ BY NAYLA`](http://github.com/naylachan/BOTZ).
+Edit the required value in `settings.json`. You can get the api key at [`BOTZ BY NAYLA`](http://github.com/naylachan/BOTZ).
 ```json
 {
     "apikey": "YOUR_APIKEY",
