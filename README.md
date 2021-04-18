@@ -34,6 +34,12 @@ Edit the required value in `settings.json`. You can get the api key at [`BOTZ BY
 ```cmd
 > npm start
 ```
-
+## rimurubotz
+```cmd
+> mau ambil case dari sini ya??
+> silahkan, gk ada yg langka kok
+> capek" bikin case ehh malah direcode🗿
+> setidaknya follow github gw lah anjirr
+```
 ## Note:
 * You can request a case in my [`WhatsApp`](http://wa.me/62812874133914).
