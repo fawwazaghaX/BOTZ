@@ -336,10 +336,10 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
 			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
 			const isQuotedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage')
-			if (!isGroup && isCmd) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;32mBABYBOT\x1b[1;37m]', time, color(command), 'dari', color(sender.split('@')[0]), 'args :', color(args.length))
-			if (!isGroup && !isCmd) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;31mR4ML4N\x1b[1;37m]', time, color('Pesan'), 'dari', color(pushname), 'args :', color(args.length))
-			if (isCmd && isGroup) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;32mBABYBOT\x1b[1;37m]', time, color(command), 'dari', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
-			if (!isCmd && isGroup) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;31mR4ML4N\x1b[1;37m]', time, color('Pesan'), 'dari', color(pushname), 'in', color(groupName), 'args :', color(args.length))
+			if (!isGroup && isCmd) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;32mNAYLA\x1b[1;37m]', time, color(command), 'dari', color(sender.split('@')[0]), 'args :', color(args.length))
+			if (!isGroup && !isCmd) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;31mNAYLA\x1b[1;37m]', time, color('Pesan'), 'dari', color(pushname), 'args :', color(args.length))
+			if (isCmd && isGroup) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;32mNAYLA\x1b[1;37m]', time, color(command), 'dari', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+			if (!isCmd && isGroup) console.log('\x1b[1;31m=\x1b[1;37m>', '[\x1b[1;31mNAYLA\x1b[1;37m]', time, color('Pesan'), 'dari', color(pushname), 'in', color(groupName), 'args :', color(args.length))
 			switch (command) {
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API FREEEEEE ]==============================================================*/                  	    
@@ -2821,7 +2821,102 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*====================================================[ TEXT PRO XIXIXI ]==============================================================*/                  	    
 /*====================================================[ CASE BY NAYLA ]==============================================================*/                    	 
-                     
+                      case 'sound1':
+                    const sound2 = fs.readFileSync('sound/sound2.mp3')
+                    nayla.sendMessage(from, sound2, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break 
+                    case 'sound3':
+                    const sound3 = fs.readFileSync('sound/sound3.mp3')
+                    nayla.sendMessage(from, sound3, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break 
+                    case 'sound4':
+                    const sound4 = fs.readFileSync('sound/sound4.mp3')
+                    nayla.sendMessage(from, sound4, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break      
+                    case 'sound5':
+                    const sound5 = fs.readFileSync('sound/sound5.mp3')
+                    nayla.sendMessage(from, sound5, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break           
+                    case 'sound6':
+                    const sound6 = fs.readFileSync('sound/sound6.mp3')
+                    nayla.sendMessage(from, sound6, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound7':
+                    const sound7 = fs.readFileSync('sound/sound7.mp3')
+                    nayla.sendMessage(from, sound7, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound8':
+                    const sound8 = fs.readFileSync('sound/sound8.mp3')
+                    nayla.sendMessage(from, sound8, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound9':
+                    const sound9 = fs.readFileSync('sound/sound9.mp3')
+                    nayla.sendMessage(from, sound9, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound10':
+                    const sound10 = fs.readFileSync('sound/sound10.mp3')
+                    nayla.sendMessage(from, sound10, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound11':
+                    const sound11 = fs.readFileSync('sound/sound11.mp3')
+                    nayla.sendMessage(from, sound11, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound12':
+                    const sound12 = fs.readFileSync('sound/sound12.mp3')
+                    nayla.sendMessage(from, sound12, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound13':
+                    const sound13 = fs.readFileSync('sound/sound13.mp3')
+                    nayla.sendMessage(from, sound13, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound14':
+                    const sound14 = fs.readFileSync('sound/sound14.mp3')
+                    nayla.sendMessage(from, sound14, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound15':
+                    const sound15 = fs.readFileSync('sound/sound15.mp3')
+                    nayla.sendMessage(from, sound15, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound16':
+                    const sound16 = fs.readFileSync('sound/sound16.mp3')
+                    nayla.sendMessage(from, sound16, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound17':
+                    const sound17 = fs.readFileSync('sound/sound17.mp3')
+                    nayla.sendMessage(from, sound17, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound18':
+                    const sound18 = fs.readFileSync('sound/sound18.mp3')
+                    nayla.sendMessage(from, sound18, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound19':
+                    const sound19 = fs.readFileSync('sound/sound19.mp3')
+                    nayla.sendMessage(from, sound19, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound20':
+                    const sound20 = fs.readFileSync('sound/sound20.mp3')
+                    nayla.sendMessage(from, sound20, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound21':
+                    const sound21 = fs.readFileSync('sound/sound21.mp3')
+                    nayla.sendMessage(from, sound21, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound22':
+                    const sound22 = fs.readFileSync('assets/sound22.mp3')
+                    nayla.sendMessage(from, sound22, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                
+                    case 'sound23':
+                    const sound23 = fs.readFileSync('sound/sound23.mp3')
+                    nayla.sendMessage(from, sound23, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break              
+                    case 'sound24':
+                    const sound24 = fs.readFileSync('sound/sound24.mp3')
+                    nayla.sendMessage(from, sound24, MessageType.audio, {quoted: nay, mimetype: 'audio/mp4', ptt:true})
+                    break                                                        
+                    case 'sound25':
+                    const sound25 = fs.readFileSync('sound/sound25.mp3')
+                    nayla.sendMessage(from, sound25, MessageType.audio, {mimetype: 'audio/mp4', ptt:true})
+                    break                  
                      
      
                      case 'maker1':
