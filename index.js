@@ -141,7 +141,6 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
         	})
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=======================================================[ WELCOME ]==============================================================*/                  	    
-             
             nayla.on('group-participants-update', async (anu) => {
 	    	if (!welkom.includes(anu.jid)) return
 		    try {
@@ -193,29 +192,7 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
              
 /* ===================================================[ BOT WHATSAPP ]==============================================================*/    
 /*=====================================================[ API VIDEFIKRI ]==============================================================*/                  	                 
-	        const nay1 = {
-            key: {
-			fromMe: false,
-			participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-	    	},
-		    message: {
-			"productMessage": {
-				"product": {
-					"productImage":{
-						"mimetype": "image/jpeg",
-						"jpegThumbnail": fs.readFileSync(`./menu/undef1.png`)
-					},
-					"title": fake1,
-					"description": cr,
-					"currencyCode": "USD",
-					"priceAmount1000": "2000",
-					"retailerId": fake2,
-					"productImageCount": 1
-				},
-				"businessOwnerJid": `0@s.whatsapp.net`
-		}
-	}
-}
+	        
 	        nayla.on('chat-update', async (nay) => {
       		try {
             if (!nay.hasNewMessage) return
@@ -227,6 +204,8 @@ const botx = JSON.parse(fs.readFileSync('./nayla/botx.json'))
 			global.blocked		
 			const content = JSON.stringify(nay.message)
 			const from = nay.key.remoteJid
+			const nay1 = {
+            key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "caption": fake1} } }            
 			const type = Object.keys(nay.message)[0]
 			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
